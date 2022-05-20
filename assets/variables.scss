@@ -1,0 +1,35 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+
+$btn-text-transform: none;
+$btn-letter-spacing: normal;
+$list-nav-border-radius: 8px;
+$list-nav-padding-left: 20px;
+$list-nav-padding-right: 20px;
+$list-nav-item-padding: 0 16px;
+
+$tabs-item-letter-spacing: normal;
+$tabs-text-transform: none;
+
+.v-navigation-drawer {
+  .theme--light.v-list-item--active::before {
+    opacity: 0;
+  }
+}
+
+.v-navigation-drawer--mini-variant {
+  .v-list--nav {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .v-list--nav .v-list-item {
+    padding: 0 12px;
+  }
+}
+
+.v-app-bar {
+  border-left: none !important;
+}
