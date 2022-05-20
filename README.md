@@ -1,5 +1,5 @@
 # Ubiklan Test
-[LINK DEMO](https://master.d1tto9gwiwbduf.amplifyapp.com/).
+[LINK DEMO](https://silver-eclair-14e920.netlify.app/screen).
 
 ## Build Setup
 
