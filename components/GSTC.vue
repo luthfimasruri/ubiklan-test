@@ -92,10 +92,10 @@ export default {
         "December",
       ],
       dataItems: [
-        // Row 1
+        // Row 0
         {
           hour: 0,
-          toHour: 3,
+          toHour: 5,
           date: 0,
           data: {
             name: "Schedule #001",
@@ -103,9 +103,83 @@ export default {
           },
         },
         {
-          hour: 3,
-          toHour: 5,
+          hour: 5,
+          toHour: 8,
           date: 0,
+          data: {
+            name: "Schedule #001",
+            color: "#60dd91",
+          },
+        },
+        {
+          hour: 8,
+          toHour: 15,
+          date: 0,
+          data: {
+            name: "Schedule #001",
+            color: "#6abff5",
+          },
+        },
+        {
+          hour: 15,
+          toHour: 24,
+          date: 0,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        // Row 1
+        {
+          hour: 0,
+          toHour: 4,
+          date: 1,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        {
+          hour: 4,
+          toHour: 7,
+          date: 1,
+          data: {
+            name: "Schedule #001",
+            color: "#60dd91",
+          },
+        },
+        {
+          hour: 7,
+          toHour: 10,
+          date: 1,
+          data: {
+            name: "Schedule #001",
+            color: "#6abff5",
+          },
+        },
+        {
+          hour: 10,
+          toHour: 24,
+          date: 1,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        // Row 2
+        {
+          hour: 0,
+          toHour: 3,
+          date: 2,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        {
+          hour: 3,
+          toHour: 6,
+          date: 2,
           data: {
             name: "Schedule #001",
             color: "#60dd91",
@@ -114,7 +188,7 @@ export default {
         {
           hour: 6,
           toHour: 8,
-          date: 0,
+          date: 2,
           data: {
             name: "Schedule #001",
             color: "#6abff5",
@@ -123,7 +197,118 @@ export default {
         {
           hour: 8,
           toHour: 24,
-          date: 0,
+          date: 2,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        // Row 3
+        {
+          hour: 0,
+          toHour: 3,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        {
+          hour: 3,
+          toHour: 5,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#60dd91",
+          },
+        },
+        {
+          hour: 6,
+          toHour: 8,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#6abff5",
+          },
+        },
+        {
+          hour: 8,
+          toHour: 24,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        // Row 3
+        {
+          hour: 0,
+          toHour: 3,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        {
+          hour: 3,
+          toHour: 5,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#60dd91",
+          },
+        },
+        {
+          hour: 5,
+          toHour: 8,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#6abff5",
+          },
+        },
+        {
+          hour: 8,
+          toHour: 24,
+          date: 3,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        // Row 4
+        {
+          hour: 1,
+          toHour: 4,
+          date: 4,
+          data: {
+            name: "Schedule #001",
+            color: "#bd78ef",
+          },
+        },
+        {
+          hour: 4,
+          toHour: 8,
+          date: 4,
+          data: {
+            name: "Schedule #001",
+            color: "#60dd91",
+          },
+        },
+        {
+          hour: 9,
+          toHour: 19,
+          date: 4,
+          data: {
+            name: "Schedule #001",
+            color: "#6abff5",
+          },
+        },
+        {
+          hour: 19,
+          toHour: 24,
+          date: 4,
           data: {
             name: "Schedule #001",
             color: "#bd78ef",
