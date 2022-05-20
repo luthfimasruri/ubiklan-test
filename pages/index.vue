@@ -16,7 +16,7 @@ export default {
   data: () => ({
       items: [
         {
-          text: 'Videotron',
+          text: 'Welcome home',
           disabled: true,
           href: '/',
         },
