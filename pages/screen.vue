@@ -9,7 +9,7 @@
       <v-tab v-for="(item, i) in tabItems" :key="i" class="text-capitalize">{{ item }}</v-tab>
     </v-tabs>
     <v-divider></v-divider>
-    <v-tabs-items v-model="tab">
+    <v-tabs-items v-model="tab" :touchless="true">
       <!-- Detail Tab Item -->
       <v-tab-item :key="0">
         <div class="pa-6">

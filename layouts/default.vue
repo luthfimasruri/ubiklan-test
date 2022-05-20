@@ -24,7 +24,7 @@
     <!-- App Bar -->
     <v-app-bar :clipped-left="clipped" fixed app elevation="0" height="80" outlined>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
+      <v-btn icon @click.stop="miniVariant = !miniVariant" class="d-none d-sm-block">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <!-- <v-btn icon @click.stop="clipped = !clipped">

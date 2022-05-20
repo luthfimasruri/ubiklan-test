@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-6 pr-0">
+  <div class="pt-6 pl-6">
     <v-row>
       <!-- Schedule Date Controller -->
       <v-col class="d-flex align-center">
@@ -7,10 +7,7 @@
           Today
         </v-btn>
         <div class="d-flex align-center mx-6">
-          <v-btn
-            icon
-            @click.stop="month === 0 ? (month = months.length - 1) : month--"
-          >
+          <v-btn icon @click.stop="month === 0 ? (month = months.length - 1) : month--">
             <v-icon>mdi-chevron-left</v-icon>
           </v-btn>
           <v-window v-model="month" class="mx-3">
@@ -18,10 +15,7 @@
               {{ month }} {{ $dayjs().year() }}
             </v-window-item>
           </v-window>
-          <v-btn
-            icon
-            @click.stop="month === months.length - 1 ? (month = 0) : month++"
-          >
+          <v-btn icon @click.stop="month === months.length - 1 ? (month = 0) : month++">
             <v-icon>mdi-chevron-right</v-icon>
           </v-btn>
         </div>
@@ -29,16 +23,13 @@
     </v-row>
     <div class="grid-layout mt-2">
       <!-- Side Date -->
-      <div class="grid-side">
-        <div v-for="(day, i) in 30" :key="i">
-          <v-card
-            flat
-            width="60"
-            height="60"
-            class="rounded-circle d-flex align-center justify-center flex-column"
-          >
-            <div class="body-2">Mon</div>
-            <div class="font-weight-bold text-h6" style="line-height: 1">{{i}}</div>
+      <div class="grid-side py-4">
+        <div v-for="(day, i) in 31" :key="i">
+          <v-card flat width="60" height="60" class="rounded-circle d-flex align-center justify-center flex-column">
+            <div class="body-2">{{ getDayOfWeek($dayjs().date(i).day()) }}</div>
+            <div class="font-weight-bold text-h6" style="line-height: 1">
+              {{ day }}
+            </div>
           </v-card>
         </div>
       </div>
@@ -46,26 +37,20 @@
       <!-- Header Hour -->
       <div class="grid-header py-4 px-4">
         <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold">
-          {{ i < 10 ? `0${i}` : i }}:00
-        </v-card>
+          {{ i < 10 ? `0${i}` : i }}:00 </v-card>
       </div>
 
       <!-- Data Timeliem -->
       <div class="grid-data py-4 px-4">
-        <v-card
-          flat
-          v-for="(item, i) in dataItems"
-          :key="i"
-          :color="item.data.color"
-          :style="generateStyle(item)"
-          class="px-3 py-2 white--text rounded-lg"
-        >
+        <v-card flat v-for="(item, i) in dataItems" :key="i" :color="item.data.color" :style="generateStyle(item)"
+          class="px-3 py-2 white--text rounded-lg" :elevation="hover ? 16 : 0">
           <div class="font-weight-bold">{{ item.data.name }}</div>
           <div>
-            {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 -
-            {{ item.toHour < 10 ? `0${item.toHour}` : item.toHour }}:00
-          </div>
+            {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
+                item.toHour
+            }}:00 </div>
         </v-card>
+        <v-btn class="xxx" v-if="hover">HHHHH</v-btn>
       </div>
     </div>
   </div>
@@ -76,6 +61,15 @@ export default {
   name: "GSTC",
   data() {
     return {
+      weeks: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
       month: this.$dayjs().month(),
       months: [
         "January",
@@ -318,9 +312,12 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$dayjs().month());
+    console.log(this.$dayjs().date(1).format("MMMM"));
   },
   methods: {
+    getDayOfWeek(index) {
+      return this.weeks[index].substr(0, 3);
+    },
     generateStyle(item) {
       let row = item.date + 1;
       let colStart = item.hour + 1;
@@ -369,5 +366,12 @@ export default {
   overflow-x: auto;
   grid-column: 2 / 3;
   grid-row: 2 / auto;
+}
+
+.xxx {
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 0;
 }
 </style>
