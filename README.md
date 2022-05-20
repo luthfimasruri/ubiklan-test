@@ -4,6 +4,7 @@
 ## Features
 - Progressive Web App (PWA)
 - Responsive
+- Single Page Application
 
 ## Lighthouse Score
 <img width="753" alt="Screen Shot 2022-05-20 at 16 52 01" src="https://user-images.githubusercontent.com/6185447/169503844-e6eb6d03-81b3-4b53-9b64-8faf80256184.png">
