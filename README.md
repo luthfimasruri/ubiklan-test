@@ -1,6 +1,14 @@
 # Ubiklan Test
 [LINK DEMO](https://silver-eclair-14e920.netlify.app).
 
+## Features
+[v] Progressive Web App (PWA)
+[v] Responsive
+
+
+## Lighthouse Score
+
+
 ## Build Setup
 
 ```bash
