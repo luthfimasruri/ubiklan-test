@@ -46,6 +46,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/dayjs',
   ],
 
   // PWA module configuration: https://pwa.nuxtjs.org/setup
@@ -62,6 +63,20 @@ export default {
       lang: 'en',
       useWebmanifestExtension: false
     }
+  },
+
+  // Dayjs configuration: https://day.js.org/
+  dayjs: {
+    locales: ['id'],
+    defaultLocale: 'id',
+    defaultTimeZone: 'Asia/Jakarta',
+    plugins: [
+      'utc',
+      'timezone',
+      'LocaleData',
+      'relativeTime',
+      'advancedFormat',
+    ]
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

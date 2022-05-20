@@ -95,24 +95,17 @@
 
       <!-- Schedule Tab Item -->
       <v-tab-item :key="1">
-        <div class="pa-6">
-          <v-row>
-            <!-- Schedule Date Controller -->
-            <v-col>
-              <v-btn class="rounded-lg" outlined color="ubi-grey" height="40">
-                Today
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
+        <GSTC />
       </v-tab-item>
     </v-tabs-items>
   </div>
 </template>
 
 <script>
+import GSTC from '~/components/GSTC.vue'
 export default {
   name: 'IndexPage',
+  components: { GSTC },
   data: () => ({
     breadcrumbItems: [
       {
