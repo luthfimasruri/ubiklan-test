@@ -21,7 +21,9 @@
         </div>
       </v-col>
     </v-row>
-    <div class="grid-layout mt-2">
+    <div class="grid-layout mt-5">
+      <div class="grid-corner">
+      </div>
       <!-- Side Date -->
       <div class="grid-side py-4">
         <div v-for="(day, i) in 31" :key="i">
@@ -35,8 +37,8 @@
       </div>
 
       <!-- Header Hour -->
-      <div class="grid-header py-4 px-4">
-        <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold">
+      <div class="grid-header px-4">
+        <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold my-2">
           {{ i < 10 ? `0${i}` : i }}:00 </v-card>
       </div>
 
@@ -334,8 +336,13 @@ export default {
 <style lang="scss">
 .grid-layout {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
-  grid-template-rows: 50px minmax(0, 1fr);
+  grid-template-columns: 70px minmax(0, 1fr);
+  grid-template-rows: 40px minmax(0, 1fr);
+}
+
+.grid-corner {
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
 .grid-header {

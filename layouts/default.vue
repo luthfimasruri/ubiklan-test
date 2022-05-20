@@ -48,7 +48,7 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <inline-svg src="icons/bell-icon.svg" />
       </v-btn>
-      <v-btn text rounded height="40" href="" class="d-flex text-left px-0 ml-2">
+      <v-btn text rounded height="40" width="40" href="" class="d-flex text-left px-0 ml-2">
         <v-avatar color="ubi-orange" size="40">
           <span class="white--text text-h6">J</span>
         </v-avatar>
