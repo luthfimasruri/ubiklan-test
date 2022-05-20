@@ -73,7 +73,6 @@ export default {
     plugins: [
       'utc',
       'timezone',
-      'LocaleData',
       'relativeTime',
       'advancedFormat',
     ]
