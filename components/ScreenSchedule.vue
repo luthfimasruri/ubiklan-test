@@ -22,19 +22,23 @@
       </v-col>
     </v-row>
     <div class="grid-layout mt-5">
-      <div class="grid-corner">
-      </div>
+      <div class="grid-corner"></div>
       <!-- Side Date -->
-      <div class="grid-side py-4">
-        <div v-for="(day, i) in 31" :key="i">
-          <v-card flat width="60" height="60" class="rounded-circle d-flex align-center justify-center flex-column">
-            <div class="body-2">{{ getDayOfWeek($dayjs().date(i).day()) }}</div>
-            <div class="font-weight-bold text-h6" style="line-height: 1">
-              {{ day }}
-            </div>
-          </v-card>
-        </div>
-      </div>
+      <v-item-group v-model="day" class="grid-side py-4">
+        <v-sheet v-for="(day, i) in 31" :key="i" class="d-flex align-center">
+          <v-item v-slot="{ active, toggle }" class="mr-3 rounded-circle" color="transparent">
+            <v-card width="55" height="55" flat :class="active ? 'ubi-orange white--text' : ''" @click="toggle"
+              class="rounded-circle d-flex align-center justify-center flex-column text-center">
+              <div>
+                <div class="body-2">{{ getDayOfWeek($dayjs().date(i).day()) }}</div>
+                <div class="font-weight-bold body-1" style="line-height: 1">
+                  {{ day }}
+                </div>
+              </div>
+            </v-card>
+          </v-item>
+        </v-sheet>
+      </v-item-group>=
 
       <!-- Header Hour -->
       <div class="grid-header px-4">
@@ -45,14 +49,13 @@
       <!-- Data Timeliem -->
       <div class="grid-data py-4 px-4">
         <v-card flat v-for="(item, i) in dataItems" :key="i" :color="item.data.color" :style="generateStyle(item)"
-          class="px-3 py-2 white--text rounded-lg" :elevation="hover ? 16 : 0">
+          class="px-3 py-2 white--text rounded-lg">
           <div class="font-weight-bold">{{ item.data.name }}</div>
           <div>
             {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
                 item.toHour
             }}:00 </div>
         </v-card>
-        <v-btn class="xxx" v-if="hover">HHHHH</v-btn>
       </div>
     </div>
   </div>
@@ -62,6 +65,7 @@
 export default {
   data() {
     return {
+      day: 1,
       weeks: [
         "Monday",
         "Tuesday",
@@ -356,7 +360,7 @@ export default {
 
 .grid-side {
   display: grid;
-  grid-template-rows: repeat(30, 1fr);
+  grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   border-right: 1px solid #ccc;
   grid-row: 2/3;
@@ -366,7 +370,7 @@ export default {
 .grid-data {
   display: grid;
   grid-template-columns: repeat(24, 140px);
-  grid-template-rows: repeat(30, 1fr);
+  grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   grid-column-gap: 5px;
   overflow-x: auto;
