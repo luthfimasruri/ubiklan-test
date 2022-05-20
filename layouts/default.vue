@@ -12,7 +12,7 @@
         <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ubi-grey--text"
           active-class="ubi-orange ubi-white--text">
           <v-list-item-action>
-            <inline-svg width="24" height="24" :src="`icons/${item.icon}`" />
+            <inline-svg width="24" height="24" :src="`/icons/${item.icon}`" />
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
@@ -39,14 +39,14 @@
           append-icon="" placeholder="Search screen, media, playlist or schedule">
           <template #prepend>
             <div class="ubi-grey lighten-4 px-2 ubi-grey--text rounded-l-lg">
-              <inline-svg width="24" height="24" class="my-2" src="icons/search-icon.svg" />
+              <inline-svg width="24" height="24" class="my-2" src="/icons/search-icon.svg" />
             </div>
           </template>
         </v-autocomplete>
       </div>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <inline-svg src="icons/bell-icon.svg" />
+        <inline-svg src="/icons/bell-icon.svg" />
       </v-btn>
       <v-btn text rounded height="40" width="40" href="" class="d-flex text-left px-0 ml-2">
         <v-avatar color="ubi-orange" size="40">

@@ -60,7 +60,6 @@
 
 <script>
 export default {
-  name: "GSTC",
   data() {
     return {
       weeks: [
@@ -373,12 +372,5 @@ export default {
   overflow-x: auto;
   grid-column: 2 / 3;
   grid-row: 2 / auto;
-}
-
-.xxx {
-  position: -webkit-sticky;
-  /* Safari */
-  position: sticky;
-  top: 0;
 }
 </style>

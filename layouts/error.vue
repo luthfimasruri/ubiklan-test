@@ -1,5 +1,5 @@
 <template>
-  <v-img src="images/bg-pattern.svg" gradient="to bottom, rgba(255,255,255,.5), rgba(255,255,255,.5)" contain
+  <v-img src="/images/bg-pattern.svg" gradient="to bottom, rgba(255,255,255,.5), rgba(255,255,255,.5)" contain
     class="ma-6 mr-0 ma-md-12 mr-md-0 pr-6 pr-md-12 d-flex align-center">
     <div class="d-flex align-center justify-center flex-column flex-sm-row">
       <v-img class="mx-3" :max-width="$vuetify.breakpoint.smAndUp ? 200 : 150" src="/404/robot.svg"></v-img>
