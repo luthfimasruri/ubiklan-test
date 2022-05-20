@@ -38,7 +38,7 @@
             </v-card>
           </v-item>
         </v-sheet>
-      </v-item-group>=
+      </v-item-group>
 
       <!-- Header Hour -->
       <div class="grid-header px-4">

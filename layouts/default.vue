@@ -2,12 +2,13 @@
   <v-app light>
     <!-- App Navigation -->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
-      <div class="d-flex align-center" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
+      <nuxt-link to="/" class="d-flex align-center" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
         <div style="max-width: 100%;">
-          <v-img width="64" max-width="100%" src="ubi-screen-logo.svg" contain alt="Ubi Screen Logo" />
+          <v-img width="64" max-width="100%" src="/ubi-screen-logo.svg" contain alt="Ubi Screen Logo" />
         </div>
-        <h1 class="ml-2 ubi-grey--text text--darken-2" :class="{ 'd-none': miniVariant }">UbiScreen</h1>
-      </div>
+        <h1 class="ml-2 ubi-grey--text text--darken-2" :class="{ 'd-none': miniVariant }"
+          style="text-decoration: none;">UbiScreen</h1>
+      </nuxt-link>
       <v-list nav>
         <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ubi-grey--text"
           active-class="ubi-orange ubi-white--text">
@@ -33,7 +34,7 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
-      <div class="x-search mx-4 flex-grow-1 rounded-lg">
+      <div class="x-search mx-2 mx-sm-4 flex-grow-1 rounded-lg">
         <v-autocomplete height="40" background-color="transparent" solo flat dense v-model="select" :loading="loading"
           :items="items" :search-input.sync="search" cache-items class="pl-0 rounded-r-lg rounded-l-0" hide-details
           append-icon="" placeholder="Search screen, media, playlist or schedule">
@@ -45,10 +46,11 @@
         </v-autocomplete>
       </div>
       <v-spacer />
+
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <inline-svg src="/icons/bell-icon.svg" />
+        <inline-svg width="24" height="24" src="/icons/bell-icon.svg" />
       </v-btn>
-      <v-btn text rounded height="40" width="40" href="" class="d-flex text-left px-0 ml-2">
+      <button class="d-flex ml-1 ml-sm-2 text-left">
         <v-avatar color="ubi-orange" size="40">
           <span class="white--text text-h6">J</span>
         </v-avatar>
@@ -59,7 +61,7 @@
           </div>
           <v-icon class="mr-2"> mdi-chevron-down </v-icon>
         </div>
-      </v-btn>
+      </button>
       <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn> -->

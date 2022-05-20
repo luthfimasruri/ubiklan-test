@@ -46,7 +46,7 @@
       </v-col>
 
       <!-- Billboard Description -->
-      <v-col cols="12" md="6" class="d-flex">
+      <v-col cols="12" md="6" class="d-sm-flex">
         <div class="flex-grow-1">
           <div class="d-flex justify-space-between align-center">
             <div>
@@ -89,7 +89,7 @@
             </v-col>
           </v-row>
         </div>
-        <div class="ml-5">
+        <div class="mt-5 mt-sm-0 ml-sm-5">
           <v-btn class="rounded-lg" outlined color="ubi-orange" height="40">
             <v-icon left>mdi-square-edit-outline</v-icon>
             Edit

@@ -1,26 +1,48 @@
-<template>
-  <v-row justify="center" align="center">
-    <v-col>
-      <v-breadcrumbs :items="items">
-        <template v-slot:divider>
-          <v-icon>mdi-chevron-right</v-icon>
-        </template>
-      </v-breadcrumbs>
-    </v-col>
-  </v-row>
+<template>  
+  <div>
+    <v-row justify="center" align="center">
+      <v-col>
+        <v-breadcrumbs :items="items">
+          <template v-slot:divider>
+            <v-icon>mdi-chevron-right</v-icon>
+          </template>
+        </v-breadcrumbs>
+      </v-col>
+    </v-row>
+    <v-row justify="center" align="center">
+      <v-col>
+        <v-img src="/images/bg-pattern.svg" gradient="to bottom, rgba(255,255,255,.5), rgba(255,255,255,.5)" contain
+          class="ma-6 mr-0 ma-md-12 mr-md-0 pr-6 pr-md-12 d-flex align-center">
+          <div class="d-flex align-center justify-center flex-column">
+            <v-img class="mx-3" :max-width="$vuetify.breakpoint.smAndUp ? 200 : 150" src="/icon.png"></v-img>
+            <div class="mx-3 my-5 text-center">
+              <div class="text-h3 text-sm-h2 font-weight-medium">Welcome To Ubiklan</div>
+              <div class="text-h6 text-sm-h5 mt-4 font-weight-medium">
+                We innovate ways that put technology to out-of-home ads.
+              </div>
+              <v-btn to="/screen" color="primary" large rounded class="mt-6">
+                GO TO SCREEN PAGE
+                <inline-svg width="18" height="18" class="my-2 ml-2" src="/icons/screen-icon.svg" />
+              </v-btn>
+            </div>
+          </div>
+        </v-img>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
   data: () => ({
-      items: [
-        {
-          text: 'Welcome home',
-          disabled: true,
-          href: '/',
-        },
-      ],
-    }),
+    items: [
+      {
+        text: 'Overview',
+        disabled: true,
+        href: '/',
+      },
+    ],
+  }),
 }
 </script>
