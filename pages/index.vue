@@ -1,8 +1,8 @@
 <template>  
-  <v-container>
+  <div class="pa-3">
     <v-row justify="center" align="center">
       <v-col>
-        <v-breadcrumbs :items="items" class="font-weight-bold">
+        <v-breadcrumbs :items="items" class="font-weight-bold px-3 py-3">
           <template v-slot:divider>
             <v-icon>mdi-chevron-right</v-icon>
           </template>
@@ -29,7 +29,7 @@
         </v-img>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>

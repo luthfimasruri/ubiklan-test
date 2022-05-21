@@ -52,19 +52,22 @@
 
       <!-- Menu Profile -->
       <v-menu offset-y z-index="999" nudge-bottom="8" rounded="lg">
-        <template v-slot:activator="{ on, attrs }">
-          <button class="d-flex ml-1 ml-sm-2 text-left" v-on="on" v-bind="attrs">
-            <v-avatar color="ubi-orange" size="40">
-              <span class="white--text text-h6">J</span>
-            </v-avatar>
-            <div class="d-none d-md-flex align-center">
-              <div class="mx-2">
-                <div class="font-weight-bold">John Doe</div>
-                <div class="body-2" style="line-height: 1">Admin</div>
+        <template v-slot:activator="{ on, attrs, value }">
+          <v-hover v-slot="{ hover }">
+            <button v-on="on" v-bind="attrs" class="d-flex ml-1 ml-sm-2 pa-1 text-left rounded-pill"
+              :class="hover || value ? 'grey lighten-3' : ''">
+              <v-avatar color="ubi-orange" size="40">
+                <span class="white--text text-h6">J</span>
+              </v-avatar>
+              <div class="d-none d-md-flex align-center">
+                <div class="mx-2">
+                  <div class="font-weight-bold">John Doe</div>
+                  <div class="body-2" style="line-height: 1">Admin</div>
+                </div>
+                <v-icon class="mr-2"> mdi-{{ `chevron-${value ? 'up' : 'down'}` }} </v-icon>
               </div>
-              <v-icon class="mr-2"> mdi-chevron-down </v-icon>
-            </div>
-          </button>
+            </button>
+          </v-hover>
         </template>
 
         <v-card>
