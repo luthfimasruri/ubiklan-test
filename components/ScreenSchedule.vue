@@ -92,227 +92,160 @@ export default {
       ],
       dataItems: [
         // Row 0
-        {
-          hour: 0,
-          toHour: 5,
-          date: 0,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 5,
-          toHour: 8,
-          date: 0,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 8,
-          toHour: 15,
-          date: 0,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 15,
-          toHour: 24,
-          date: 0,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
+        { date: 0, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 0, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 0, hour: 5, toHour: 10, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 0, hour: 10, toHour: 17, data: { name: "Schedule #004", color: "#dd8c61" } },
+        { date: 0, hour: 17, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
         // Row 1
-        {
-          hour: 0,
-          toHour: 4,
-          date: 1,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 4,
-          toHour: 7,
-          date: 1,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 7,
-          toHour: 10,
-          date: 1,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 10,
-          toHour: 24,
-          date: 1,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
+        { date: 1, hour: 0, toHour: 2, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 1, hour: 2, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 1, hour: 5, toHour: 8, data: { name: "Schedule #003", color: "#dd8c61" } },
+        { date: 1, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 1, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
         // Row 2
-        {
-          hour: 0,
-          toHour: 3,
-          date: 2,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 3,
-          toHour: 6,
-          date: 2,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 6,
-          toHour: 8,
-          date: 2,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 8,
-          toHour: 24,
-          date: 2,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
+        { date: 2, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 2, hour: 4, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 2, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 2, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
         // Row 3
-        {
-          hour: 0,
-          toHour: 3,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 3,
-          toHour: 5,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 6,
-          toHour: 8,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 8,
-          toHour: 24,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        // Row 3
-        {
-          hour: 0,
-          toHour: 3,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 3,
-          toHour: 5,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 5,
-          toHour: 8,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 8,
-          toHour: 24,
-          date: 3,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
+        { date: 3, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 3, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 3, hour: 6, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 3, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
         // Row 4
-        {
-          hour: 1,
-          toHour: 4,
-          date: 4,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
-        {
-          hour: 4,
-          toHour: 8,
-          date: 4,
-          data: {
-            name: "Schedule #001",
-            color: "#60dd91",
-          },
-        },
-        {
-          hour: 9,
-          toHour: 19,
-          date: 4,
-          data: {
-            name: "Schedule #001",
-            color: "#6abff5",
-          },
-        },
-        {
-          hour: 19,
-          toHour: 24,
-          date: 4,
-          data: {
-            name: "Schedule #001",
-            color: "#bd78ef",
-          },
-        },
+        { date: 4, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#ff7675" } },
+        { date: 4, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 4, hour: 5, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 4, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 5
+        { date: 5, hour: 1, toHour: 5, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 5, hour: 5, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 5, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 5, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 6
+        { date: 6, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 6, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 6, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 6, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 6, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 7
+        { date: 7, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 7, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 7, hour: 5, toHour: 10, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 7, hour: 10, toHour: 17, data: { name: "Schedule #004", color: "#dd8c61" } },
+        { date: 7, hour: 17, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 8
+        { date: 8, hour: 0, toHour: 2, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 8, hour: 2, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 8, hour: 5, toHour: 8, data: { name: "Schedule #003", color: "#dd8c61" } },
+        { date: 8, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 8, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 9
+        { date: 9, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#fdcb6e" } },
+        { date: 9, hour: 4, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 9, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 9, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 10
+        { date: 10, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 10, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 10, hour: 6, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 10, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 11
+        { date: 11, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#ff7675" } },
+        { date: 11, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 11, hour: 5, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 11, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 12
+        { date: 12, hour: 1, toHour: 5, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 12, hour: 5, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 12, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 12, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 13
+        { date: 13, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 13, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 13, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 13, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 13, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 14
+        // Row 15
+        { date: 15, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 15, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 15, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 15, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 15, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 16
+        { date: 16, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 16, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 16, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 16, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 16, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 17
+        { date: 17, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 17, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 17, hour: 5, toHour: 10, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 17, hour: 10, toHour: 17, data: { name: "Schedule #004", color: "#dd8c61" } },
+        { date: 17, hour: 17, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 18
+        { date: 18, hour: 0, toHour: 2, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 18, hour: 2, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 18, hour: 5, toHour: 8, data: { name: "Schedule #003", color: "#dd8c61" } },
+        { date: 18, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 18, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 19
+        { date: 19, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#fdcb6e" } },
+        { date: 19, hour: 4, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 19, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 19, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 20
+        { date: 20, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 20, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 20, hour: 6, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 20, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 21
+        { date: 21, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#ff7675" } },
+        { date: 21, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 21, hour: 5, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 21, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 22
+        { date: 22, hour: 1, toHour: 5, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 22, hour: 5, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 22, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 22, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 23
+        { date: 23, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 23, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 23, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 23, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 23, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 25
+        { date: 25, hour: 0, toHour: 4, data: { name: "Schedule #001", color: "#00cec9" } },
+        { date: 25, hour: 4, toHour: 6, data: { name: "Schedule #002", color: "#bd78ef" } },
+        { date: 25, hour: 6, toHour: 11, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 25, hour: 11, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 25, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 26
+        { date: 26, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 26, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 26, hour: 5, toHour: 10, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 26, hour: 10, toHour: 17, data: { name: "Schedule #004", color: "#dd8c61" } },
+        { date: 26, hour: 17, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 27
+        { date: 27, hour: 0, toHour: 2, data: { name: "Schedule #001", color: "#bd78ef" } },
+        { date: 27, hour: 2, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 27, hour: 5, toHour: 8, data: { name: "Schedule #003", color: "#dd8c61" } },
+        { date: 27, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 27, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 29
+        { date: 29, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#fdcb6e" } },
+        { date: 29, hour: 4, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 29, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 29, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
+        // Row 30
+        { date: 30, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#fdcb6e" } },
+        { date: 30, hour: 4, toHour: 8, data: { name: "Schedule #002", color: "#60dd91" } },
+        { date: 30, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
+        { date: 30, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
       ],
     };
   },

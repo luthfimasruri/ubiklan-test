@@ -2,12 +2,11 @@
   <v-app light>
     <!-- App Navigation -->
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
-      <nuxt-link to="/" class="d-flex align-center" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
+      <nuxt-link to="/" class="d-flex align-center text-decoration-none" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
         <div style="max-width: 100%;">
           <v-img width="64" max-width="100%" src="/ubi-screen-logo.svg" contain alt="Ubi Screen Logo" />
         </div>
-        <h1 class="ml-2 ubi-grey--text text--darken-2" :class="{ 'd-none': miniVariant }"
-          style="text-decoration: none;">UbiScreen</h1>
+        <h1 class="ml-2 ubi-grey--text text--darken-2" :class="{ 'd-none': miniVariant }">UbiScreen</h1>
       </nuxt-link>
       <v-list nav>
         <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ubi-grey--text"
@@ -99,7 +98,7 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       menuItems: [
         {
@@ -215,7 +214,11 @@ export default {
         'Wyoming',
       ],
     }
-  }
+  },
+  mounted() {
+    this.drawer = this.$vuetify.breakpoint.lgAndUp
+    this.miniVariant = this.$vuetify.breakpoint.smAndDown ? false : this.miniVariant
+  },
 }
 </script>
 

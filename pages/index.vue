@@ -2,7 +2,7 @@
   <div>
     <v-row justify="center" align="center">
       <v-col>
-        <v-breadcrumbs :items="items">
+        <v-breadcrumbs :items="items" class="font-weight-bold">
           <template v-slot:divider>
             <v-icon>mdi-chevron-right</v-icon>
           </template>
@@ -12,7 +12,7 @@
     <v-row justify="center" align="center">
       <v-col>
         <v-img src="/images/bg-pattern.svg" gradient="to bottom, rgba(255,255,255,.5), rgba(255,255,255,.5)" contain
-          class="ma-6 mr-0 ma-md-12 mr-md-0 pr-6 pr-md-12 d-flex align-center">
+          class="ma-6 mr-0 ma-md-12 mr-md-0 pr-6 pr-md-12 d-flex align-center" max-height="500">
           <div class="d-flex align-center justify-center flex-column">
             <v-img class="mx-3" :max-width="$vuetify.breakpoint.smAndUp ? 200 : 150" src="/icon.png"></v-img>
             <div class="mx-3 my-5 text-center">
