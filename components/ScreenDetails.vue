@@ -17,7 +17,7 @@
           show-arrows-on-hover
           :hide-delimiters="true"
         >
-          <v-carousel-item v-for="(item, i) in billboardItems" :key="i">
+          <v-carousel-item v-for="(item, i) in billboardItems" :key="i" eager>
             <v-img :src="`/images/${item.src}`" class="rounded-lg" />
           </v-carousel-item>
         </v-carousel>

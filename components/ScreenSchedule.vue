@@ -24,38 +24,44 @@
     <div class="grid-layout mt-5">
       <div class="grid-corner"></div>
       <!-- Side Date -->
-      <v-item-group v-model="day" class="grid-side py-4">
-        <v-sheet v-for="(day, i) in 31" :key="i" class="d-flex align-center">
-          <v-item v-slot="{ active, toggle }" class="mr-3 rounded-circle" color="transparent">
-            <v-card width="55" height="55" flat :class="active ? 'ubi-orange white--text' : ''" @click="toggle"
-              class="rounded-circle d-flex align-center justify-center flex-column text-center">
-              <div>
-                <div class="body-2">{{ getDayOfWeek($dayjs().date(i).day()) }}</div>
-                <div class="font-weight-bold body-1" style="line-height: 1">
-                  {{ day }}
+      <div class="grid-side">
+        <v-item-group v-model="day" class="grid-side-content py-4">
+          <v-sheet v-for="(day, i) in 31" :key="i" class="d-flex align-center">
+            <v-item v-slot="{ active, toggle }" class="mr-3 rounded-circle" color="transparent">
+              <v-card width="55" height="55" flat :class="active ? 'ubi-orange white--text' : ''" @click="toggle"
+                class="rounded-circle d-flex align-center justify-center flex-column text-center">
+                <div>
+                  <div class="body-2">{{ getDayOfWeek($dayjs().date(i).day()) }}</div>
+                  <div class="font-weight-bold body-1" style="line-height: 1">
+                    {{ day }}
+                  </div>
                 </div>
-              </div>
-            </v-card>
-          </v-item>
-        </v-sheet>
-      </v-item-group>
+              </v-card>
+            </v-item>
+          </v-sheet>
+        </v-item-group>
+      </div>
 
       <!-- Header Hour -->
-      <div class="grid-header px-4">
-        <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold my-2">
-          {{ i < 10 ? `0${i}` : i }}:00 </v-card>
+      <div class="grid-header">
+        <div class="grid-header-content px-4" ref="gridHeaderContent">
+          <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold my-2">
+            {{ i < 10 ? `0${i}` : i }}:00 </v-card>
+        </div>
       </div>
 
       <!-- Data Timeliem -->
-      <div class="grid-data py-4 px-4">
-        <v-card flat v-for="(item, i) in dataItems" :key="i" :color="item.data.color" :style="generateStyle(item)"
-          class="px-3 py-2 white--text rounded-lg">
-          <div class="font-weight-bold">{{ item.data.name }}</div>
-          <div>
-            {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
-                item.toHour
-            }}:00 </div>
-        </v-card>
+      <div class="grid-data">
+        <div class="grid-data-content py-4 px-4" ref="gridDataContent">
+          <v-card flat v-for="(item, i) in dataItems" :key="i" :color="item.data.color" :style="generateStyle(item)"
+            class="px-3 py-2 white--text rounded-lg">
+            <div class="font-weight-bold">{{ item.data.name }}</div>
+            <div>
+              {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
+                  item.toHour
+              }}:00 </div>
+          </v-card>
+        </div>
       </div>
     </div>
   </div>
@@ -247,10 +253,34 @@ export default {
         { date: 30, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
         { date: 30, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
       ],
+      isMouseOverGridHeader: false,
+      isMouseOverGridData: false,
     };
   },
   mounted() {
-    console.log(this.$dayjs().date(1).format("MMMM"));
+    this.$refs.gridHeaderContent.addEventListener("mouseleave",  ()=> {
+      this.isMouseOverGridHeader = false
+    }, false);
+    this.$refs.gridHeaderContent.addEventListener("mouseover",  ()=> {
+      this.isMouseOverGridHeader = true
+    }, false);
+    this.$refs.gridHeaderContent.addEventListener("scroll", () => {
+      if(this.isMouseOverGridHeader) {
+        this.$refs.gridDataContent.scrollLeft = this.$refs.gridHeaderContent.scrollLeft;
+      }
+    });
+
+    this.$refs.gridDataContent.addEventListener("mouseleave",  ()=> {
+      this.isMouseOverGridData = false
+    }, false);
+    this.$refs.gridDataContent.addEventListener("mouseover",  ()=> {
+      this.isMouseOverGridData = true
+    }, false);
+    this.$refs.gridDataContent.addEventListener("scroll", () => {
+      if(this.isMouseOverGridData) {
+        this.$refs.gridHeaderContent.scrollLeft = this.$refs.gridDataContent.scrollLeft;
+      }
+    });
   },
   methods: {
     getDayOfWeek(index) {
@@ -277,37 +307,59 @@ export default {
 }
 
 .grid-corner {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
 
 .grid-header {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+}
+
+.grid-header-content {
   display: grid;
   grid-template-columns: repeat(24, 140px);
   grid-column-gap: 5px;
-  overflow-x: visible;
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  border-bottom: 1px solid #ccc;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+
+  /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
+  }
 }
 
 .grid-side {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.grid-side-content {
   display: grid;
   grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   border-right: 1px solid #ccc;
-  grid-row: 2/3;
-  grid-column: 1 / 2;
 }
 
 .grid-data {
+  grid-column: 2 / 3;
+  grid-row: 2 / auto;
+}
+
+.grid-data-content {
   display: grid;
   grid-template-columns: repeat(24, 140px);
   grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   grid-column-gap: 5px;
-  overflow-x: auto;
-  grid-column: 2 / 3;
-  grid-row: 2 / auto;
+  overflow-x: scroll;
 }
 </style>
