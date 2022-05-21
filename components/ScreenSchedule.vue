@@ -24,10 +24,10 @@
       </v-row>
     </v-container>
     <div class="grid-layout pt-3 pl-3">
-      <div class="grid-corner"></div>
+      <div class="layout-corner"></div>
       <!-- Side Date -->
-      <div class="grid-side">
-        <v-item-group v-model="day" class="grid-side-content py-4">
+      <div class="layout-days">
+        <v-item-group v-model="day" class="grid-days py-4">
           <v-sheet v-for="(day, i) in 31" :key="i" class="d-flex align-center">
             <v-item v-slot="{ active, toggle }" class="mr-3 rounded-circle" color="transparent">
               <v-card width="55" height="55" flat :class="active ? 'ubi-orange white--text' : ''" @click="toggle"
@@ -45,17 +45,17 @@
       </div>
 
       <!-- Header Hour -->
-      <div class="grid-header">
-        <div class="grid-header-content px-4" ref="gridHeader">
+      <div class="layout-hours">
+        <div class="grid-hours px-4" ref="gridHours">
           <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold my-2">
             {{ i < 10 ? `0${i}` : i }}:00 </v-card>
         </div>
       </div>
 
       <!-- Data Timeliem -->
-      <div class="grid-data">
-        <div class="grid-data-content py-4 px-4" ref="gridData">
-          <v-hover v-for="(item, i) in dataItems" :key="i" v-slot="{ hover }" :style="generateStyle(item)">
+      <div class="layout-timeline">
+        <div class="grid-timeline py-4 px-4" ref="gridTimeline">
+          <v-hover v-for="(item, i) in dataTimeline" :key="i" v-slot="{ hover }" :style="generateStyle(item)">
             <v-card flat :color="item.data.color" :elevation="hover ? 4 : 0" class="px-3 py-2 white--text rounded-lg"
               @click="onClickTimeline(item)">
               <div class="font-weight-bold">{{ item.data.name }}</div>
@@ -68,6 +68,7 @@
         </div>
       </div>
     </div>
+
     <!-- Dialog Form Edit Timeline -->
     <v-dialog v-model="showFormEditTimeline" max-width="600px">
       <v-card>
@@ -121,7 +122,7 @@ export default {
         "November",
         "December",
       ],
-      dataItems: [
+      dataTimeline: [
         // Row 0
         { date: 0, hour: 0, toHour: 3, data: { name: "Schedule #001", color: "#bd78ef" } },
         { date: 0, hour: 3, toHour: 5, data: { name: "Schedule #002", color: "#60dd91" } },
@@ -280,24 +281,24 @@ export default {
       ],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
-      isSyncingHeaderScroll: false,
-      isSyncingDataScroll: false,
+      isSyncingHoursScroll: false,
+      isSyncingTimelineScroll: false,
     };
   },
   mounted() {
-    this.$refs.gridHeader.onscroll = () => {
-      if(!this.isSyncingHeaderScroll) {
-        this.isSyncingDataScroll = true;
-        this.$refs.gridData.scrollLeft = this.$refs.gridHeader.scrollLeft;
+    this.$refs.gridHours.onscroll = () => {
+      if(!this.isSyncingHoursScroll) {
+        this.isSyncingTimelineScroll = true;
+        this.$refs.gridTimeline.scrollLeft = this.$refs.gridHours.scrollLeft;
       }
-      this.isSyncingHeaderScroll = false;
+      this.isSyncingHoursScroll = false;
     };
-    this.$refs.gridData.onscroll = () => {
-      if(!this.isSyncingDataScroll) {
-        this.isSyncingHeaderScroll = true;
-        this.$refs.gridHeader.scrollLeft = this.$refs.gridData.scrollLeft;
+    this.$refs.gridTimeline.onscroll = () => {
+      if(!this.isSyncingTimelineScroll) {
+        this.isSyncingHoursScroll = true;
+        this.$refs.gridHours.scrollLeft = this.$refs.gridTimeline.scrollLeft;
       }
-      this.isSyncingDataScroll = false;
+      this.isSyncingTimelineScroll = false;
     };
   },
   methods: {
@@ -326,24 +327,33 @@ export default {
   display: grid;
   grid-template-columns: 70px minmax(0, 1fr);
   grid-template-rows: 40px minmax(0, 1fr);
+  .layout-corner {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }
+
+  .layout-hours {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    overflow: hidden;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+  }
+
+  .layout-days {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+
+  .layout-timeline {
+    grid-column: 2 / 3;
+    grid-row: 2 / auto;
+  }
 }
 
-.grid-corner {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  border-bottom: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-}
-
-.grid-header {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  overflow: hidden;
-  border-bottom: 1px solid #ccc;
-  position: relative;
-}
-
-.grid-header-content {
+.grid-hours {
   display: grid;
   grid-template-columns: repeat(24, 140px);
   grid-column-gap: 5px;
@@ -359,24 +369,14 @@ export default {
   }
 }
 
-.grid-side {
-  grid-row: 2 / 3;
-  grid-column: 1 / 2;
-}
-
-.grid-side-content {
+.grid-days {
   display: grid;
   grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   border-right: 1px solid #ccc;
 }
 
-.grid-data {
-  grid-column: 2 / 3;
-  grid-row: 2 / auto;
-}
-
-.grid-data-content {
+.grid-timeline {
   display: grid;
   grid-template-columns: repeat(24, 140px);
   grid-template-rows: repeat(30, 70px);

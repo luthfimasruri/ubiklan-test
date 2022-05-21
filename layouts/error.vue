@@ -4,7 +4,7 @@
       <div class="d-flex align-center justify-center flex-column flex-sm-row">
         <inline-svg class="mx-3" :width="$vuetify.breakpoint.smAndUp ? 200 : 150" height="auto" src="/404/robot.svg">
         </inline-svg>
-        <div class="mx-3 text-center">
+        <div class="mx-3 pb-3 text-center">
           <div class="text-h2 text-sm-h1 font-weight-medium">Oops!</div>
           <div class="text-h6 text-sm-h5 mt-4 font-weight-medium">
             {{ error.statusCode === 404 ? pageNotFound : otherError }}
