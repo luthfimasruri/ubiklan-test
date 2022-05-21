@@ -1,5 +1,5 @@
 <template>  
-  <div>
+  <v-container>
     <v-row justify="center" align="center">
       <v-col>
         <v-breadcrumbs :items="items" class="font-weight-bold">
@@ -29,7 +29,7 @@
         </v-img>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>

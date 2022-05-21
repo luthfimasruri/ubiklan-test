@@ -1,27 +1,29 @@
 <template>
-  <div class="pt-6 pl-6">
-    <v-row>
-      <!-- Schedule Date Controller -->
-      <v-col class="d-flex align-center">
-        <v-btn class="rounded-lg" outlined color="ubi-grey" height="40">
-          Today
-        </v-btn>
-        <div class="d-flex align-center mx-6">
-          <v-btn icon @click.stop="month === 0 ? (month = months.length - 1) : month--">
-            <v-icon>mdi-chevron-left</v-icon>
+  <div class="pt-3 pl-3">
+    <v-container>
+      <v-row>
+        <!-- Schedule Date Controller -->
+        <v-col class="d-flex align-center">
+          <v-btn class="rounded-lg" outlined color="ubi-grey" height="40">
+            Today
           </v-btn>
-          <v-window v-model="month" class="mx-3">
-            <v-window-item v-for="(month, i) in months" :key="i" :value="i">
-              {{ month }} {{ $dayjs().year() }}
-            </v-window-item>
-          </v-window>
-          <v-btn icon @click.stop="month === months.length - 1 ? (month = 0) : month++">
-            <v-icon>mdi-chevron-right</v-icon>
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
-    <div class="grid-layout mt-5">
+          <div class="d-flex align-center mx-6">
+            <v-btn icon @click.stop="month === 0 ? (month = months.length - 1) : month--">
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-window v-model="month" class="mx-3">
+              <v-window-item v-for="(month, i) in months" :key="i" :value="i">
+                {{ month }} {{ $dayjs().year() }}
+              </v-window-item>
+            </v-window>
+            <v-btn icon @click.stop="month === months.length - 1 ? (month = 0) : month++">
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+    <div class="grid-layout pt-3 pl-3">
       <div class="grid-corner"></div>
       <!-- Side Date -->
       <div class="grid-side">
@@ -44,7 +46,7 @@
 
       <!-- Header Hour -->
       <div class="grid-header">
-        <div class="grid-header-content px-4" ref="gridHeaderContent">
+        <div class="grid-header-content px-4" ref="gridHeader">
           <v-card flat v-for="(_, i) in 24" :key="i" class="font-weight-bold my-2">
             {{ i < 10 ? `0${i}` : i }}:00 </v-card>
         </div>
@@ -52,18 +54,41 @@
 
       <!-- Data Timeliem -->
       <div class="grid-data">
-        <div class="grid-data-content py-4 px-4" ref="gridDataContent">
-          <v-card flat v-for="(item, i) in dataItems" :key="i" :color="item.data.color" :style="generateStyle(item)"
-            class="px-3 py-2 white--text rounded-lg">
-            <div class="font-weight-bold">{{ item.data.name }}</div>
-            <div>
-              {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
-                  item.toHour
-              }}:00 </div>
-          </v-card>
+        <div class="grid-data-content py-4 px-4" ref="gridData">
+          <v-hover v-for="(item, i) in dataItems" :key="i" v-slot="{ hover }" :style="generateStyle(item)">
+            <v-card flat :color="item.data.color" :elevation="hover ? 4 : 0" class="px-3 py-2 white--text rounded-lg"
+              @click="onClickTimeline(item)">
+              <div class="font-weight-bold">{{ item.data.name }}</div>
+              <div>
+                {{ item.hour < 10 ? `0${item.hour}` : item.hour }}:00 - {{ item.toHour < 10 ? `0${item.toHour}` :
+                    item.toHour
+                }}:00 </div>
+            </v-card>
+          </v-hover>
         </div>
       </div>
     </div>
+    <!-- Dialog Form Edit Timeline -->
+    <v-dialog v-model="showFormEditTimeline" max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Edit Timeline</span>
+        </v-card-title>
+        <v-card-text class="pb-0">
+          <v-container>
+            <v-text-field v-model.number="selectedDataTimeline.hour" type="number" outlined label="Hour" hint="Number 0-23" required></v-text-field>
+            <v-text-field v-model.number="selectedDataTimeline.toHour" type="number" outlined label="To Hour" hint="Number 0-23" required></v-text-field>
+          </v-container>
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary darken-1" text @click="showFormEditTimeline = false">
+            Close
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -253,36 +278,33 @@ export default {
         { date: 30, hour: 8, toHour: 15, data: { name: "Schedule #003", color: "#6abff5" } },
         { date: 30, hour: 15, toHour: 24, data: { name: "Schedule #004", color: "#bd78ef" } },
       ],
-      isMouseOverGridHeader: false,
-      isMouseOverGridData: false,
+      selectedDataTimeline: {},
+      showFormEditTimeline: false,
+      isSyncingHeaderScroll: false,
+      isSyncingDataScroll: false,
     };
   },
   mounted() {
-    this.$refs.gridHeaderContent.addEventListener("mouseleave",  ()=> {
-      this.isMouseOverGridHeader = false
-    }, false);
-    this.$refs.gridHeaderContent.addEventListener("mouseover",  ()=> {
-      this.isMouseOverGridHeader = true
-    }, false);
-    this.$refs.gridHeaderContent.addEventListener("scroll", () => {
-      if(this.isMouseOverGridHeader) {
-        this.$refs.gridDataContent.scrollLeft = this.$refs.gridHeaderContent.scrollLeft;
+    this.$refs.gridHeader.onscroll = () => {
+      if(!this.isSyncingHeaderScroll) {
+        this.isSyncingDataScroll = true;
+        this.$refs.gridData.scrollLeft = this.$refs.gridHeader.scrollLeft;
       }
-    });
-
-    this.$refs.gridDataContent.addEventListener("mouseleave",  ()=> {
-      this.isMouseOverGridData = false
-    }, false);
-    this.$refs.gridDataContent.addEventListener("mouseover",  ()=> {
-      this.isMouseOverGridData = true
-    }, false);
-    this.$refs.gridDataContent.addEventListener("scroll", () => {
-      if(this.isMouseOverGridData) {
-        this.$refs.gridHeaderContent.scrollLeft = this.$refs.gridDataContent.scrollLeft;
+      this.isSyncingHeaderScroll = false;
+    };
+    this.$refs.gridData.onscroll = () => {
+      if(!this.isSyncingDataScroll) {
+        this.isSyncingHeaderScroll = true;
+        this.$refs.gridHeader.scrollLeft = this.$refs.gridData.scrollLeft;
       }
-    });
+      this.isSyncingDataScroll = false;
+    };
   },
   methods: {
+    onClickTimeline(data) {
+      this.selectedDataTimeline = data;
+      this.showFormEditTimeline = true;
+    },
     getDayOfWeek(index) {
       return this.weeks[index].substr(0, 3);
     },

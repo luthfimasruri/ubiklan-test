@@ -49,18 +49,66 @@
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <inline-svg width="24" height="24" src="/icons/bell-icon.svg" />
       </v-btn>
-      <button class="d-flex ml-1 ml-sm-2 text-left">
-        <v-avatar color="ubi-orange" size="40">
-          <span class="white--text text-h6">J</span>
-        </v-avatar>
-        <div class="d-none d-md-flex align-center">
-          <div class="mx-2">
-            <div class="font-weight-bold">John Doe</div>
-            <div class="caption">Admin</div>
-          </div>
-          <v-icon class="mr-2"> mdi-chevron-down </v-icon>
-        </div>
-      </button>
+
+      <!-- Menu Profile -->
+      <v-menu offset-y z-index="999" nudge-bottom="8" rounded="lg">
+        <template v-slot:activator="{ on, attrs }">
+          <button class="d-flex ml-1 ml-sm-2 text-left" v-on="on" v-bind="attrs">
+            <v-avatar color="ubi-orange" size="40">
+              <span class="white--text text-h6">J</span>
+            </v-avatar>
+            <div class="d-none d-md-flex align-center">
+              <div class="mx-2">
+                <div class="font-weight-bold">John Doe</div>
+                <div class="body-2" style="line-height: 1">Admin</div>
+              </div>
+              <v-icon class="mr-2"> mdi-chevron-down </v-icon>
+            </div>
+          </button>
+        </template>
+
+        <v-card>
+          <v-list>
+            <v-list-item>
+              <v-list-item-avatar color="ubi-orange">
+                <span class="white--text text-h6">J</span>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>John Doe</v-list-item-title>
+                <v-list-item-subtitle>Admin</v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-btn icon>
+                  <v-icon>mdi-square-edit-outline</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+          <v-divider></v-divider>
+
+          <v-list class="py-0">
+            <v-list-item-group color="primary">
+              <v-list-item v-for="(item, i) in menuProfile" :key="i">
+                <v-list-item-icon>
+                  <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                  <v-list-item-title v-text="item.text"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="menu = false">
+              Log Out <v-icon right>mdi-logout</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-menu>
       <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn> -->
@@ -75,12 +123,12 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
+          <v-list-item-title class="font-weight-bold text-h6">Notification</v-list-item-title>
           <v-list-item-action>
             <v-icon light>
               mdi-repeat
             </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -146,7 +194,21 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
-
+      // Profile
+      menuProfile: [
+        {
+          icon: 'mdi-inbox',
+          text: 'Inbox',
+        },
+        {
+          icon: 'mdi-calendar-check-outline',
+          text: 'Calendar',
+        },
+        {
+          icon: 'mdi-cog-outline',
+          text: 'Setting',
+        },
+      ],
       // App Bar Data
       loading: false,
       items: [],

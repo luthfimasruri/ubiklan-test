@@ -5,7 +5,7 @@
         <v-icon>mdi-chevron-right</v-icon>
       </template>
     </v-breadcrumbs>
-    <v-tabs v-model="tab" class="mx-6">
+    <v-tabs v-model="tab" class="px-6">
       <v-tab v-for="(item, i) in tabItems" :key="i" class="text-capitalize">{{ item }}</v-tab>
     </v-tabs>
     <v-divider></v-divider>
