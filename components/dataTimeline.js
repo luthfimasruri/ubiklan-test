@@ -33,7 +33,7 @@ let data = [
   { date: "2022-04-06", startTime: "06:00", endTime: "11:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "#ffffff" },
   { date: "2022-04-06", startTime: "11:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "#ffffff" },
   { date: "2022-04-06", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
-  
+
   // Month 05/2020
   // ===============================================================
   // Row 1
@@ -237,7 +237,7 @@ let data = [
   { date: "2022-06-12", startTime: "06:00", endTime: "11:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "#ffffff" },
   { date: "2022-06-12", startTime: "11:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "#ffffff" },
   { date: "2022-06-12", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
-  
+
 ];
 
 export function getTimeline(date) {

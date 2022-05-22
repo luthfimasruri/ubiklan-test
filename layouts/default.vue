@@ -1,16 +1,44 @@
 <template>
   <v-app light>
     <!-- App Navigation -->
-    <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
-      <nuxt-link to="/" class="d-flex align-center text-decoration-none" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
-        <div style="max-width: 100%;">
-          <v-img width="64" max-width="100%" src="/ub-screen-logo.svg" contain alt="Ubi Screen Logo" />
+    <v-navigation-drawer
+      v-model="drawer"
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      fixed
+      app
+    >
+      <nuxt-link
+        to="/"
+        class="d-flex align-center text-decoration-none"
+        :class="miniVariant ? 'px-2 py-7' : 'pa-5'"
+      >
+        <div style="max-width: 100%">
+          <v-img
+            width="64"
+            max-width="100%"
+            src="/ub-screen-logo.svg"
+            contain
+            alt="Ubi Screen Logo"
+          />
         </div>
-        <h1 class="ml-2 ub-grey--text text--darken-2" :class="{ 'd-none': miniVariant }">UbiScreen</h1>
+        <h1
+          class="ml-2 ub-grey--text text--darken-2"
+          :class="{ 'd-none': miniVariant }"
+        >
+          UbiScreen
+        </h1>
       </nuxt-link>
       <v-list nav>
-        <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ub-grey--text"
-          active-class="ub-orange ub-white--text">
+        <v-list-item
+          v-for="(item, i) in menuItems"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+          class="ub-grey--text"
+          active-class="ub-orange ub-white--text"
+        >
           <v-list-item-action>
             <inline-svg width="24" height="24" :src="`/icons/${item.icon}`" />
           </v-list-item-action>
@@ -22,9 +50,20 @@
     </v-navigation-drawer>
 
     <!-- App Bar -->
-    <v-app-bar :clipped-left="clipped" fixed app elevation="0" height="80" outlined>
+    <v-app-bar
+      :clipped-left="clipped"
+      fixed
+      app
+      elevation="0"
+      height="80"
+      outlined
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant" class="d-none d-sm-block">
+      <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+        class="d-none d-sm-block"
+      >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <!-- <v-btn icon @click.stop="clipped = !clipped">
@@ -34,12 +73,30 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
       <div class="x-search mx-2 mx-sm-4 flex-grow-1 rounded-lg">
-        <v-autocomplete height="40" background-color="transparent" solo flat dense v-model="select" :loading="loading"
-          :items="items" :search-input.sync="search" cache-items class="pl-0 rounded-r-lg rounded-l-0" hide-details
-          append-icon="" placeholder="Search screen, media, playlist or schedule">
+        <v-autocomplete
+          height="40"
+          background-color="transparent"
+          solo
+          flat
+          dense
+          v-model="select"
+          :loading="loading"
+          :items="items"
+          :search-input.sync="search"
+          cache-items
+          class="pl-0 rounded-r-lg rounded-l-0"
+          hide-details
+          append-icon=""
+          placeholder="Search screen, media, playlist or schedule"
+        >
           <template #prepend>
             <div class="ub-grey lighten-4 px-2 ub-grey--text rounded-l-lg">
-              <inline-svg width="24" height="24" class="my-2" src="/icons/search-icon.svg" />
+              <inline-svg
+                width="24"
+                height="24"
+                class="my-2"
+                src="/icons/search-icon.svg"
+              />
             </div>
           </template>
         </v-autocomplete>
@@ -54,8 +111,12 @@
       <v-menu offset-y z-index="999" nudge-bottom="8" rounded="lg">
         <template v-slot:activator="{ on, attrs, value }">
           <v-hover v-slot="{ hover }">
-            <button v-on="on" v-bind="attrs" class="d-flex ml-1 ml-sm-2 pa-1 text-left rounded-pill"
-              :class="hover || value ? 'grey lighten-3' : ''">
+            <button
+              v-on="on"
+              v-bind="attrs"
+              class="d-flex ml-1 ml-sm-2 pa-1 text-left rounded-pill"
+              :class="hover || value ? 'grey lighten-3' : ''"
+            >
               <v-avatar color="ub-orange" size="40">
                 <span class="white--text text-h6">J</span>
               </v-avatar>
@@ -64,7 +125,9 @@
                   <div class="font-weight-bold">John Doe</div>
                   <div class="body-2" style="line-height: 1">Admin</div>
                 </div>
-                <v-icon class="mr-2"> mdi-{{ `chevron-${value ? 'up' : 'down'}` }} </v-icon>
+                <v-icon class="mr-2">
+                  mdi-{{ `chevron-${value ? 'up' : 'down'}` }}
+                </v-icon>
               </div>
             </button>
           </v-hover>
@@ -126,11 +189,11 @@
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
-          <v-list-item-title class="font-weight-bold text-h6">Notification</v-list-item-title>
+          <v-list-item-title class="font-weight-bold text-h6"
+            >Notification</v-list-item-title
+          >
           <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
+            <v-icon light> mdi-repeat </v-icon>
           </v-list-item-action>
         </v-list-item>
       </v-list>
@@ -155,42 +218,42 @@ export default {
         {
           icon: 'overview-icon.svg',
           title: 'Overview',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'screen-icon.svg',
           title: 'Screen',
-          to: '/screen'
+          to: '/screen',
         },
         {
           icon: 'media-icon.svg',
           title: 'Media',
-          to: '/media'
+          to: '/media',
         },
         {
           icon: 'playlist-icon.svg',
           title: 'Playlist',
-          to: '/playlist'
+          to: '/playlist',
         },
         {
           icon: 'schedule-icon.svg',
           title: 'Schedule',
-          to: '/schedule'
+          to: '/schedule',
         },
         {
           icon: 'statistics-icon.svg',
           title: 'Statistics',
-          to: '/statistics'
+          to: '/statistics',
         },
         {
           icon: 'payouts-icon.svg',
           title: 'Payouts',
-          to: '/payouts'
+          to: '/payouts',
         },
         {
           icon: 'settings-icon.svg',
           title: 'Settings',
-          to: '/settings'
+          to: '/settings',
         },
       ],
       miniVariant: false,
@@ -282,7 +345,9 @@ export default {
   },
   mounted() {
     this.drawer = this.$vuetify.breakpoint.lgAndUp
-    this.miniVariant = this.$vuetify.breakpoint.smAndDown ? false : this.miniVariant
+    this.miniVariant = this.$vuetify.breakpoint.smAndDown
+      ? false
+      : this.miniVariant
   },
 }
 </script>

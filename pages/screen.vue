@@ -6,7 +6,9 @@
       </template>
     </v-breadcrumbs>
     <v-tabs v-model="tab" class="px-6">
-      <v-tab v-for="(item, i) in tabItems" :key="i" class="text-capitalize">{{ item }}</v-tab>
+      <v-tab v-for="(item, i) in tabItems" :key="i" class="text-capitalize">{{
+        item
+      }}</v-tab>
     </v-tabs>
     <v-divider></v-divider>
     <v-tabs-items v-model="tab" :touchless="true">
@@ -44,15 +46,9 @@ export default {
       },
     ],
     tab: 0,
-    tabItems: [
-      "Details",
-      "Schedule",
-    ],
-    
+    tabItems: ['Details', 'Schedule'],
   }),
 }
 </script>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

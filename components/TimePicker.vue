@@ -1,13 +1,29 @@
 <template>
-  <v-menu v-model="menu" offset-y :close-on-content-click="false" max-width="290px" min-width="290px">
+  <v-menu
+    v-model="menu"
+    offset-y
+    :close-on-content-click="false"
+    max-width="290px"
+    min-width="290px"
+  >
     <template v-slot:activator="{ on }">
-      <v-text-field :label="label" outlined v-model="localValue" hint="Format: HH:MM" class="rounded-lg mb-2">
+      <v-text-field
+        :label="label"
+        outlined
+        v-model="localValue"
+        hint="Format: HH:MM"
+        class="rounded-lg mb-2"
+      >
         <template #append>
           <v-icon v-on="on" class="pr-1">mdi-clock-outline</v-icon>
         </template>
       </v-text-field>
     </template>
-    <v-time-picker v-model="localValue" full-width @click="menu = false"></v-time-picker>
+    <v-time-picker
+      v-model="localValue"
+      full-width
+      @click="menu = false"
+    ></v-time-picker>
   </v-menu>
 </template>
 <script>
@@ -25,18 +41,18 @@ export default {
   data() {
     return {
       menu: false,
-    };
+    }
   },
   computed: {
     localValue: {
       get() {
-        return this.value;
+        return this.value
       },
       set(val) {
-        this.menu = false;
-        this.$emit("input", val);
+        this.menu = false
+        this.$emit('input', val)
       },
     },
   },
-};
+}
 </script>

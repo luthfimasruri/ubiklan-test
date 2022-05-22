@@ -11,9 +11,20 @@
     <v-row>
       <!-- Billboard Images -->
       <v-col cols="12" md="6">
-        <v-carousel v-model="billboard" height="auto" show-arrows-on-hover :hide-delimiters="true">
+        <v-carousel
+          v-model="billboard"
+          height="auto"
+          show-arrows-on-hover
+          :hide-delimiters="true"
+        >
           <v-carousel-item v-for="(item, i) in billboardItems" :key="i" eager>
-            <v-img :src="`/images/${item.src}`" class="rounded-lg" width="100%" :aspect-ratio="16 / 9" eager>
+            <v-img
+              :src="`/images/${item.src}`"
+              class="rounded-lg"
+              width="100%"
+              :aspect-ratio="16 / 9"
+              eager
+            >
               <template #placeholder>
                 <v-row class="fill-height" align="center" justify="center">
                   <v-progress-circular indeterminate></v-progress-circular>
@@ -23,11 +34,26 @@
           </v-carousel-item>
         </v-carousel>
         <v-item-group v-model="billboard" mandatory class="mt-3">
-          <v-sheet class="d-flex align-center" max-width="100%" style="overflow-x: auto">
-            <v-sheet v-for="(item, i) in billboardItems" :key="i" max-width="140">
+          <v-sheet
+            class="d-flex align-center"
+            max-width="100%"
+            style="overflow-x: auto"
+          >
+            <v-sheet
+              v-for="(item, i) in billboardItems"
+              :key="i"
+              max-width="140"
+            >
               <v-item v-slot="{ active, toggle }" class="mr-3">
-                <v-img :class="{ 'billboard-active': active }" class="rounded-lg" @click="toggle"
-                  :src="`/images/${item.src}`" width="128" :aspect-ratio="16 / 9" eager>
+                <v-img
+                  :class="{ 'billboard-active': active }"
+                  class="rounded-lg"
+                  @click="toggle"
+                  :src="`/images/${item.src}`"
+                  width="128"
+                  :aspect-ratio="16 / 9"
+                  eager
+                >
                   <template #placeholder>
                     <v-row class="fill-height" align="center" justify="center">
                       <v-progress-circular indeterminate></v-progress-circular>
@@ -58,7 +84,8 @@
                 <div class="mb-2">
                   Mall Taman Palem, Lt 8, Cengkareng, Jakarta Barat, DKI Jakarta
                 </div>
-                <a text class="ub-orange--text py-2">See on Maps
+                <a text class="ub-orange--text py-2"
+                  >See on Maps
                   <v-icon color="ub-orange">mdi-chevron-right </v-icon>
                 </a>
               </div>
@@ -101,23 +128,23 @@ export default {
       billboard: 0,
       billboardItems: [
         {
-          src: "billboard1.jpeg",
+          src: 'billboard1.jpeg',
         },
         {
-          src: "billboard2.jpeg",
+          src: 'billboard2.jpeg',
         },
         {
-          src: "billboard3.jpeg",
+          src: 'billboard3.jpeg',
         },
       ],
-    };
+    }
   },
-};
+}
 </script>
 
 <style lang="scss">
 .billboard-active {
-  border: 2px solid #FF6F02;
+  border: 2px solid #ff6f02;
   padding: 2px;
 }
 </style>

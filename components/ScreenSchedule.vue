@@ -4,7 +4,13 @@
       <v-row>
         <!-- Date Controller -->
         <v-col class="d-flex align-center">
-          <v-btn class="rounded-lg" outlined color="ub-grey" height="40" @click="goToToday">
+          <v-btn
+            class="rounded-lg"
+            outlined
+            color="ub-grey"
+            height="40"
+            @click="goToToday"
+          >
             Today
           </v-btn>
           <div class="d-flex align-center mx-6">
@@ -27,10 +33,24 @@
       <!-- Side Date -->
       <div class="layout-date">
         <div class="grid-date py-4">
-          <v-btn v-for="date in currentDate.daysInMonth()" :key="date" :id="isToday(date) ? 'today' : ''"
-            :class="{ 'ub-orange': isToday(date) }" style="align-self: center" height="55" width="55" icon>
-            <div :class="isToday(date) ? 'white--text' : 'grey--text text--darken-3'">
-              <div class="body-2">{{ currentDate.date(date).toString().substring(0, 3) }}</div>
+          <v-btn
+            v-for="date in currentDate.daysInMonth()"
+            :key="date"
+            :id="isToday(date) ? 'today' : ''"
+            :class="{ 'ub-orange': isToday(date) }"
+            style="align-self: center"
+            height="55"
+            width="55"
+            icon
+          >
+            <div
+              :class="
+                isToday(date) ? 'white--text' : 'grey--text text--darken-3'
+              "
+            >
+              <div class="body-2">
+                {{ currentDate.date(date).toString().substring(0, 3) }}
+              </div>
               <div class="font-weight-bold body-1" style="line-height: 1">
                 {{ date }}
               </div>
@@ -41,32 +61,66 @@
 
       <!-- Header Time -->
       <div class="layout-time" ref="layoutTime">
-        <div class="scroller-time overflow-hidden" ref="scrollerTime" v-scroll="onScrollWindow"
-          :style="isScrollerTimeSticky ? 'position: fixed' : ''">
+        <div
+          class="scroller-time overflow-hidden"
+          ref="scrollerTime"
+          v-scroll="onScrollWindow"
+          :style="isScrollerTimeSticky ? 'position: fixed' : ''"
+        >
           <div class="grid-time px-4" ref="gridTime">
-            <v-card flat v-for="(time, i) in 24" :key="i" class="font-weight-bold my-2" :style="getTimeStyle(time)">
-              <span class="grey--text text--darken-3">{{ $dayjs().hour(i).minute(0).format('HH:mm') }}</span>
+            <v-card
+              flat
+              v-for="(time, i) in 24"
+              :key="i"
+              class="font-weight-bold my-2"
+              :style="getTimeStyle(time)"
+            >
+              <span class="grey--text text--darken-3">{{
+                $dayjs().hour(i).minute(0).format('HH:mm')
+              }}</span>
             </v-card>
-            <div v-show="currentDate.isSame(today, 'month')" class="tracker-badge" :style="getTimeTrackerStyle">
-              <div class="badge rounded white--text font-weight-bold body-2">{{ today.format('HH:mm') }}</div>
+            <div
+              v-show="currentDate.isSame(today, 'month')"
+              class="tracker-badge"
+              :style="getTimeTrackerStyle"
+            >
+              <div class="badge rounded white--text font-weight-bold body-2">
+                {{ today.format('HH:mm') }}
+              </div>
             </div>
           </div>
-
         </div>
       </div>
 
       <!-- Gantt Chart Timeline -->
       <div class="layout-timeline">
-        <div class="grid-timeline py-4 px-4 overflow-x-auto" ref="gridTimeline" v-scroll.self="onScrollTimeline">
-          <v-hover v-for="(item, i) in dataTimeline" :key="i" v-slot="{ hover }" :style="getTimelineStyle(item)">
-            <v-card flat :color="item.bgColor" :elevation="hover ? 4 : 0" class="px-3 py-2 rounded-lg"
-              @click="onClickTimeline(item)">
+        <div
+          class="grid-timeline py-4 px-4 overflow-x-auto"
+          ref="gridTimeline"
+          v-scroll.self="onScrollTimeline"
+        >
+          <v-hover
+            v-for="(item, i) in dataTimeline"
+            :key="i"
+            v-slot="{ hover }"
+            :style="getTimelineStyle(item)"
+          >
+            <v-card
+              flat
+              :color="item.bgColor"
+              :elevation="hover ? 4 : 0"
+              class="px-3 py-2 rounded-lg"
+              @click="onClickTimeline(item)"
+            >
               <div class="font-weight-bold">{{ item.title }}</div>
-              <div>
-                {{ item.startTime }} - {{ item.endTime }} </div>
+              <div>{{ item.startTime }} - {{ item.endTime }}</div>
             </v-card>
           </v-hover>
-          <div v-show="currentDate.isSame(today, 'month')" class="tracker-timeline" :style="getTimelineTrackerStyle">
+          <div
+            v-show="currentDate.isSame(today, 'month')"
+            class="tracker-timeline"
+            :style="getTimelineTrackerStyle"
+          >
             <div class="line"></div>
           </div>
         </div>
@@ -82,19 +136,40 @@
         <v-divider></v-divider>
         <v-card-text class="pb-0 px-3 px-sm-6 pt-3 pt-sm-6">
           <v-container>
-            <v-text-field v-model="selectedDataTimeline.title" label="Title" outlined class="rounded-lg mb-2">
+            <v-text-field
+              v-model="selectedDataTimeline.title"
+              label="Title"
+              outlined
+              class="rounded-lg mb-2"
+            >
             </v-text-field>
             <date-picker v-model="selectedDataTimeline.date" label="Date" />
-            <time-picker v-model="selectedDataTimeline.startTime" label="Start Time" />
-            <time-picker v-model="selectedDataTimeline.endTime" label="End Time" />
-            <color-picker v-model="selectedDataTimeline.bgColor" label="Background Color" />
-            <color-picker v-model="selectedDataTimeline.fgColor" label="Foreground Color" />
+            <time-picker
+              v-model="selectedDataTimeline.startTime"
+              label="Start Time"
+            />
+            <time-picker
+              v-model="selectedDataTimeline.endTime"
+              label="End Time"
+            />
+            <color-picker
+              v-model="selectedDataTimeline.bgColor"
+              label="Background Color"
+            />
+            <color-picker
+              v-model="selectedDataTimeline.fgColor"
+              label="Foreground Color"
+            />
           </v-container>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary darken-1" text @click="showFormEditTimeline = false">
+          <v-btn
+            color="primary darken-1"
+            text
+            @click="showFormEditTimeline = false"
+          >
             Close
           </v-btn>
         </v-card-actions>
@@ -104,14 +179,16 @@
 </template>
 
 <script>
-import { getTimeline } from './dataTimeline.js';
-import DatePicker from "./DatePicker";
-import TimePicker from "./TimePicker";
-import ColorPicker from "./ColorPicker";
+import { getTimeline } from './dataTimeline.js'
+import DatePicker from './DatePicker'
+import TimePicker from './TimePicker'
+import ColorPicker from './ColorPicker'
 
 export default {
   components: {
-    DatePicker, TimePicker, ColorPicker
+    DatePicker,
+    TimePicker,
+    ColorPicker,
   },
   data() {
     return {
@@ -120,124 +197,129 @@ export default {
       currentDate: this.$dayjs().date(1),
       month: this.$dayjs().month(),
       months: [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
       ],
       dataTimeline: [],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
       isScrollerTimeSticky: false,
-    };
+    }
   },
   computed: {
     getTimeTrackerStyle() {
-      let colStart = this.today.hour() + 1;
-      let marginLeft = 0;
-      const gridColWidth = 140 + 5;
+      let colStart = this.today.hour() + 1
+      let marginLeft = 0
+      const gridColWidth = 140 + 5
       if (this.today.minute() > 0) {
-        marginLeft = gridColWidth / 59 * parseInt(this.today.minute());
+        marginLeft = (gridColWidth / 59) * parseInt(this.today.minute())
       }
       return {
         'grid-row': `1/2`,
         'grid-column': `${colStart} / auto`,
         'margin-left': `${marginLeft}px`,
-      };
+      }
     },
     getTimelineTrackerStyle() {
-      let rowEnd = this.today.daysInMonth() + 1;
-      let colStart = this.today.hour() + 1;
-      let marginLeft = 0;
-      const gridColWidth = 140 + 5;
+      let rowEnd = this.today.daysInMonth() + 1
+      let colStart = this.today.hour() + 1
+      let marginLeft = 0
+      const gridColWidth = 140 + 5
       if (this.today.minute() > 0) {
-        marginLeft = gridColWidth / 59 * parseInt(this.today.minute());
+        marginLeft = (gridColWidth / 59) * parseInt(this.today.minute())
       }
       return {
         'grid-row': `1/${rowEnd}`,
         'grid-column': `${colStart} / auto`,
         'margin-left': `${marginLeft}px`,
-      };
+      }
     },
   },
   mounted() {
-    this.dataTimeline = getTimeline(this.today);
+    this.dataTimeline = getTimeline(this.today)
     setInterval(() => {
-      this.today = this.$dayjs();
+      this.today = this.$dayjs()
     }, 5000)
   },
   methods: {
     onClickTimeline(data) {
-      this.selectedDataTimeline = data;
-      this.showFormEditTimeline = true;
+      this.selectedDataTimeline = data
+      this.showFormEditTimeline = true
     },
     onScrollTimeline(e) {
-      this.$refs.scrollerTime.scrollLeft = e.target.scrollLeft;
+      this.$refs.scrollerTime.scrollLeft = e.target.scrollLeft
     },
     onScrollWindow(e) {
-      let top = this.$refs.layoutTime.getBoundingClientRect().top;
-      this.isScrollerTimeSticky = top <= 80;
+      let top = this.$refs.layoutTime.getBoundingClientRect().top
+      this.isScrollerTimeSticky = top <= 80
     },
     onClickNextMonth() {
-      this.currentDate = this.currentDate.month(this.currentDate.month() + 1);
+      this.currentDate = this.currentDate.month(this.currentDate.month() + 1)
     },
     onClickPrevMonth() {
-      this.currentDate = this.currentDate.month(this.currentDate.month() - 1);
+      this.currentDate = this.currentDate.month(this.currentDate.month() - 1)
     },
     isToday(date) {
-      return this.$dayjs().date(date).isSame(this.today, "day") && this.$dayjs().date(date).isSame(this.currentDate, "month");
+      return (
+        this.$dayjs().date(date).isSame(this.today, 'day') &&
+        this.$dayjs().date(date).isSame(this.currentDate, 'month')
+      )
     },
     goToToday() {
-      this.currentDate = this.$dayjs();
+      this.currentDate = this.$dayjs()
       this.$nextTick(() => {
-        this.$vuetify.goTo('#today', { offset: 60 });
-      });
+        this.$vuetify.goTo('#today', { offset: 60 })
+      })
     },
     getTimeStyle(time) {
       return {
         'grid-row': `1/2`,
         'grid-column': `${time} / ${time + 1}`,
-      };
+      }
     },
     getTimelineStyle(item) {
-      let rowStart = parseInt(this.$dayjs(item.date).format("DD"));
-      let rowEnd = parseInt(rowStart) + 1;
-      let colStart = parseInt(item.startTime.substring(0, 2)) + 1;
-      let colEnd = parseInt(item.endTime.substring(0, 2)) + 1;
+      let rowStart = parseInt(this.$dayjs(item.date).format('DD'))
+      let rowEnd = parseInt(rowStart) + 1
+      let colStart = parseInt(item.startTime.substring(0, 2)) + 1
+      let colEnd = parseInt(item.endTime.substring(0, 2)) + 1
 
-      const gridColWidth = 140 + 5;
-      let marginLeft = 0;
-      let marginRight = 0;
+      const gridColWidth = 140 + 5
+      let marginLeft = 0
+      let marginRight = 0
       if (parseInt(item.startTime.substring(3, 5)) > 0) {
-        marginLeft = gridColWidth / 59 * parseInt(item.startTime.substring(3, 5));
+        marginLeft =
+          (gridColWidth / 59) * parseInt(item.startTime.substring(3, 5))
       }
       if (parseInt(item.endTime.substring(3, 5)) > 0) {
-        colEnd += 1;
-        marginRight = gridColWidth / 59 * (59 - parseInt(item.endTime.substring(3, 5)));
+        colEnd += 1
+        marginRight =
+          (gridColWidth / 59) * (59 - parseInt(item.endTime.substring(3, 5)))
       }
       return {
-        "grid-row": `${rowStart}/${rowEnd}`,
-        "grid-column": `${colStart}/${colEnd}`,
-        "margin-left": `${marginLeft}px`,
-        "margin-right": `${marginRight}px`,
-        "color": item.fgColor,
-      };
+        'grid-row': `${rowStart}/${rowEnd}`,
+        'grid-column': `${colStart}/${colEnd}`,
+        'margin-left': `${marginLeft}px`,
+        'margin-right': `${marginRight}px`,
+        color: item.fgColor,
+      }
     },
   },
   watch: {
     currentDate(val) {
-      this.dataTimeline = getTimeline(val);
+      this.dataTimeline = getTimeline(val)
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -253,7 +335,7 @@ export default {
 
     &:after {
       position: absolute;
-      content: "";
+      content: '';
       width: 100%;
       height: 100%;
       bottom: -1px;
@@ -325,7 +407,7 @@ export default {
 
   .line {
     position: absolute;
-    border-right: 1.5px dashed #FF6F02;
+    border-right: 1.5px dashed #ff6f02;
     top: -16px;
     bottom: -16px;
     left: 0;
@@ -339,19 +421,19 @@ export default {
 
   .badge {
     position: absolute;
-    background-color: #FF6F02;
+    background-color: #ff6f02;
     padding: 2px 6px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     &:after {
-      content: "";
+      content: '';
       position: absolute;
       top: 100%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border-top: 12px solid #FF6F02;
+      border-top: 12px solid #ff6f02;
       border-right: 12px solid transparent;
       border-left: 12px solid transparent;
     }
