@@ -4,13 +4,13 @@
     <v-navigation-drawer v-model="drawer" :mini-variant="miniVariant" :clipped="clipped" fixed app>
       <nuxt-link to="/" class="d-flex align-center text-decoration-none" :class="miniVariant ? 'px-2 py-7' : 'pa-5'">
         <div style="max-width: 100%;">
-          <v-img width="64" max-width="100%" src="/ubi-screen-logo.svg" contain alt="Ubi Screen Logo" />
+          <v-img width="64" max-width="100%" src="/ub-screen-logo.svg" contain alt="Ubi Screen Logo" />
         </div>
-        <h1 class="ml-2 ubi-grey--text text--darken-2" :class="{ 'd-none': miniVariant }">UbiScreen</h1>
+        <h1 class="ml-2 ub-grey--text text--darken-2" :class="{ 'd-none': miniVariant }">UbiScreen</h1>
       </nuxt-link>
       <v-list nav>
-        <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ubi-grey--text"
-          active-class="ubi-orange ubi-white--text">
+        <v-list-item v-for="(item, i) in menuItems" :key="i" :to="item.to" router exact class="ub-grey--text"
+          active-class="ub-orange ub-white--text">
           <v-list-item-action>
             <inline-svg width="24" height="24" :src="`/icons/${item.icon}`" />
           </v-list-item-action>
@@ -38,7 +38,7 @@
           :items="items" :search-input.sync="search" cache-items class="pl-0 rounded-r-lg rounded-l-0" hide-details
           append-icon="" placeholder="Search screen, media, playlist or schedule">
           <template #prepend>
-            <div class="ubi-grey lighten-4 px-2 ubi-grey--text rounded-l-lg">
+            <div class="ub-grey lighten-4 px-2 ub-grey--text rounded-l-lg">
               <inline-svg width="24" height="24" class="my-2" src="/icons/search-icon.svg" />
             </div>
           </template>
@@ -56,7 +56,7 @@
           <v-hover v-slot="{ hover }">
             <button v-on="on" v-bind="attrs" class="d-flex ml-1 ml-sm-2 pa-1 text-left rounded-pill"
               :class="hover || value ? 'grey lighten-3' : ''">
-              <v-avatar color="ubi-orange" size="40">
+              <v-avatar color="ub-orange" size="40">
                 <span class="white--text text-h6">J</span>
               </v-avatar>
               <div class="d-none d-md-flex align-center">
@@ -73,7 +73,7 @@
         <v-card>
           <v-list>
             <v-list-item>
-              <v-list-item-avatar color="ubi-orange">
+              <v-list-item-avatar color="ub-orange">
                 <span class="white--text text-h6">J</span>
               </v-list-item-avatar>
 

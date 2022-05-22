@@ -79,6 +79,7 @@ export default {
       'timezone',
       'relativeTime',
       'advancedFormat',
+      'isoWeek',
     ]
   },
 
@@ -91,9 +92,9 @@ export default {
       themes: {
         light: {
           primary: '#FF6F02',
-          'ubi-orange': '#FF6F02',
-          'ubi-grey': '#7A7B7D',
-          'ubi-white': '#FFFFFF',
+          'ub-orange': '#FF6F02',
+          'ub-grey': '#7A7B7D',
+          'ub-white': '#FFFFFF',
         },
         dark: {
           primary: colors.blue.darken2,

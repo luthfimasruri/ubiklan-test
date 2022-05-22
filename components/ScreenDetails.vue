@@ -63,9 +63,9 @@
                 <div class="mb-2">
                   Mall Taman Palem, Lt 8, Cengkareng, Jakarta Barat, DKI Jakarta
                 </div>
-                <a text class="ubi-orange--text py-2"
+                <a text class="ub-orange--text py-2"
                   >See on Maps
-                  <v-icon color="ubi-orange">mdi-chevron-right </v-icon></a
+                  <v-icon color="ub-orange">mdi-chevron-right </v-icon></a
                 >
               </div>
             </v-card-text>
@@ -90,7 +90,7 @@
           </v-row>
         </div>
         <div class="mt-5 mt-sm-0 ml-sm-5">
-          <v-btn class="rounded-lg" outlined color="ubi-orange" height="40">
+          <v-btn class="rounded-lg" outlined color="ub-orange" height="40">
             <v-icon left>mdi-square-edit-outline</v-icon>
             Edit
           </v-btn>
