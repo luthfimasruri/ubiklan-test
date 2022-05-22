@@ -43,7 +43,7 @@ export default {
         href: '/ub0022373',
       },
     ],
-    tab: 1,
+    tab: 0,
     tabItems: [
       "Details",
       "Schedule",

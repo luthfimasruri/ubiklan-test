@@ -53,7 +53,7 @@
 
       <!-- Gantt Chart Timeline -->
       <div class="layout-timeline">
-        <div class="grid-timeline py-4 px-4 overflow-x-scroll" ref="gridTimeline" v-scroll.self="onScrollTimeline">
+        <div class="grid-timeline py-4 px-4 overflow-x-auto" ref="gridTimeline" v-scroll.self="onScrollTimeline">
           <v-hover v-for="(item, i) in dataTimeline" :key="i" v-slot="{ hover }" :style="getTimelineStyle(item)">
             <v-card flat :color="item.bgColor" :elevation="hover ? 4 : 0" class="px-3 py-2 white--text rounded-lg"
               @click="onClickTimeline(item)">
