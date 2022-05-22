@@ -1,5 +1,41 @@
 let data = [
+  // Month 04/2020
+  // ===============================================================
+  // Row 1
+  { date: "2022-04-01", startTime: "00:00", endTime: "03:20", title: "Schedule #001", type: "default", bgColor: "#dd8c61", fgColor: "ffffff" },
+  { date: "2022-04-01", startTime: "03:20", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-04-01", startTime: "06:00", endTime: "09:00", title: "Schedule #003", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-04-01", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-01", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 2
+  { date: "2022-04-02", startTime: "00:20", endTime: "04:30", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-04-02", startTime: "04:30", endTime: "08:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-04-02", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-02", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 3
+  { date: "2022-04-03", startTime: "00:45", endTime: "04:00", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-04-03", startTime: "04:00", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-04-03", startTime: "06:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-03", startTime: "15:00", endTime: "23:59", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 4
+  { date: "2022-04-04", startTime: "00:00", endTime: "03:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-04", startTime: "03:00", endTime: "06:00", title: "Schedule #001", type: "default", bgColor: "#ff7675", fgColor: "ffffff" },
+  { date: "2022-04-04", startTime: "06:00", endTime: "15:00", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-04-04", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 5
+  { date: "2022-04-05", startTime: "00:20", endTime: "05:00", title: "Schedule #001", type: "default", bgColor: "#00cec9", fgColor: "ffffff" },
+  { date: "2022-04-05", startTime: "05:00", endTime: "08:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-04-05", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-05", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 6
+  { date: "2022-04-06", startTime: "00:00", endTime: "04:00", title: "Schedule #001", type: "default", bgColor: "#00cec9", fgColor: "ffffff" },
+  { date: "2022-04-06", startTime: "04:00", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-04-06", startTime: "06:00", endTime: "11:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-04-06", startTime: "11:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-04-06", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  
   // Month 05/2020
+  // ===============================================================
   // Row 1
   { date: "2022-05-01", startTime: "00:00", endTime: "02:20", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   { date: "2022-05-01", startTime: "02:20", endTime: "05:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
@@ -151,6 +187,7 @@ let data = [
   { date: "2022-05-30", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
 
   // Month 6/2022
+  // ===============================================================
   // Row 1
   { date: "2022-06-01", startTime: "00:00", endTime: "03:00", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   { date: "2022-06-01", startTime: "03:00", endTime: "05:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
@@ -159,8 +196,8 @@ let data = [
   { date: "2022-06-01", startTime: "17:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   // Row 2
   { date: "2022-06-02", startTime: "00:00", endTime: "03:00", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
-  { date: "2022-06-02", startTime: "03:00", endTime: "05:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
-  { date: "2022-06-02", startTime: "05:00", endTime: "10:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-02", startTime: "03:00", endTime: "07:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-02", startTime: "07:00", endTime: "10:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
   { date: "2022-06-02", startTime: "10:00", endTime: "17:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   { date: "2022-06-02", startTime: "17:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   // Row 3
@@ -168,6 +205,38 @@ let data = [
   { date: "2022-06-03", startTime: "03:00", endTime: "05:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
   { date: "2022-06-03", startTime: "05:00", endTime: "10:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
   { date: "2022-06-03", startTime: "10:00", endTime: "17:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 4
+  { date: "2022-06-04", startTime: "00:00", endTime: "03:20", title: "Schedule #001", type: "default", bgColor: "#dd8c61", fgColor: "ffffff" },
+  { date: "2022-06-04", startTime: "03:20", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-06-04", startTime: "06:00", endTime: "09:00", title: "Schedule #003", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-06-04", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-04", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 5
+  { date: "2022-06-05", startTime: "00:20", endTime: "04:30", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-06-05", startTime: "04:30", endTime: "08:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-06-05", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-05", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 6
+  { date: "2022-06-06", startTime: "00:45", endTime: "04:00", title: "Schedule #001", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-06-06", startTime: "04:00", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-06-06", startTime: "06:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-06", startTime: "15:00", endTime: "23:59", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 7
+  { date: "2022-06-07", startTime: "00:00", endTime: "03:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-07", startTime: "03:00", endTime: "06:00", title: "Schedule #001", type: "default", bgColor: "#ff7675", fgColor: "ffffff" },
+  { date: "2022-06-07", startTime: "06:00", endTime: "15:00", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-06-07", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 8
+  { date: "2022-06-08", startTime: "00:20", endTime: "05:00", title: "Schedule #001", type: "default", bgColor: "#00cec9", fgColor: "ffffff" },
+  { date: "2022-06-08", startTime: "05:00", endTime: "08:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-06-08", startTime: "08:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-08", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  // Row 9
+  { date: "2022-06-12", startTime: "00:00", endTime: "04:00", title: "Schedule #001", type: "default", bgColor: "#00cec9", fgColor: "ffffff" },
+  { date: "2022-06-12", startTime: "04:00", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
+  { date: "2022-06-12", startTime: "06:00", endTime: "11:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "ffffff" },
+  { date: "2022-06-12", startTime: "11:00", endTime: "15:00", title: "Schedule #003", type: "default", bgColor: "#6abff5", fgColor: "ffffff" },
+  { date: "2022-06-12", startTime: "15:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "ffffff" },
   
 ];
 

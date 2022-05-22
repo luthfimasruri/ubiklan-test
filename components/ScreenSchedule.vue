@@ -79,12 +79,13 @@
         <v-card-title>
           <span class="text-h5">Edit Timeline</span>
         </v-card-title>
-        <v-card-text class="pb-0">
+        <v-divider></v-divider>
+        <v-card-text class="pb-0 px-3 px-sm-6 pt-3 pt-sm-6">
           <v-container>
-            <v-text-field v-model.number="selectedDataTimeline.startTime" type="number" outlined label="Hour"
-              hint="Number 0-23" required></v-text-field>
-            <v-text-field v-model.number="selectedDataTimeline.endTime" type="number" outlined label="To Hour"
-              hint="Number 0-23" required></v-text-field>
+            <v-text-field v-model="selectedDataTimeline.title" label="Title" outlined class="rounded-lg"></v-text-field>
+            <date-picker v-model="selectedDataTimeline.date" label="Date"/>
+            <time-picker v-model="selectedDataTimeline.startTime" label="Start Time"/>
+            <time-picker v-model="selectedDataTimeline.endTime" label="End Time"/>
           </v-container>
         </v-card-text>
         <v-divider></v-divider>
@@ -101,8 +102,12 @@
 
 <script>
 import { getTimeline } from './dataTimeline.js';
+import DatePicker from "./DatePicker";
 
 export default {
+  components: {
+    DatePicker
+  },
   data() {
     return {
       day: 1,
@@ -204,7 +209,8 @@ export default {
       let colEnd = parseInt(item.endTime.substring(0, 2)) + 1;
 
       const gridColWidth = 140 + 5;
-      let marginLeft, marginRight = 0;
+      let marginLeft = 0;
+      let marginRight = 0;
       if (parseInt(item.startTime.substring(3, 5)) > 0) {
         marginLeft = gridColWidth / 59 * parseInt(item.startTime.substring(3, 5));
       }
