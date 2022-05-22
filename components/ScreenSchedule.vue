@@ -40,14 +40,18 @@
       </div>
 
       <!-- Header Time -->
-      <div class="layout-time">
-        <div class="grid-time px-4 overflow-hidden" ref="gridTime">
-          <v-card flat v-for="(time, i) in 24" :key="i" class="font-weight-bold my-2" :style="getTimeStyle(time)">
-            <span class="grey--text text--darken-3">{{ $dayjs().hour(i).minute(0).format('HH:mm') }}</span>
-          </v-card>
-          <div v-show="currentDate.isSame(today, 'month')" class="tracker-badge" :style="getTimeTrackerStyle">
-            <div class="badge rounded white--text font-weight-bold body-2">{{ today.format('HH:mm') }}</div>
+      <div class="layout-time" ref="layoutTime">
+        <div class="scroller-time overflow-hidden" ref="scrollerTime" v-scroll="onScrollWindow"
+          :style="isScrollerTimeSticky ? 'position: fixed' : ''">
+          <div class="grid-time px-4" ref="gridTime">
+            <v-card flat v-for="(time, i) in 24" :key="i" class="font-weight-bold my-2" :style="getTimeStyle(time)">
+              <span class="grey--text text--darken-3">{{ $dayjs().hour(i).minute(0).format('HH:mm') }}</span>
+            </v-card>
+            <div v-show="currentDate.isSame(today, 'month')" class="tracker-badge" :style="getTimeTrackerStyle">
+              <div class="badge rounded white--text font-weight-bold body-2">{{ today.format('HH:mm') }}</div>
+            </div>
           </div>
+
         </div>
       </div>
 
@@ -122,6 +126,7 @@ export default {
       dataTimeline: [],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
+      isScrollerTimeSticky: false,
     };
   },
   computed: {
@@ -165,7 +170,11 @@ export default {
       this.showFormEditTimeline = true;
     },
     onScrollTimeline(e) {
-      this.$refs.gridTime.scrollLeft = e.target.scrollLeft;
+      this.$refs.scrollerTime.scrollLeft = e.target.scrollLeft;
+    },
+    onScrollWindow(e) {
+      let top = this.$refs.layoutTime.getBoundingClientRect().top;
+      this.isScrollerTimeSticky = top <= 80;
     },
     onClickNextMonth() {
       this.currentDate = this.currentDate.month(this.currentDate.month() + 1);
@@ -179,7 +188,7 @@ export default {
     goToToday() {
       this.currentDate = this.$dayjs();
       this.$nextTick(() => {
-        this.$vuetify.goTo('#today', { offset: 20 });
+        this.$vuetify.goTo('#today', { offset: 60 });
       });
     },
     getTimeStyle(time) {
@@ -228,14 +237,22 @@ export default {
   .layout-corner {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      bottom: -1px;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
   }
 
   .layout-time {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    border-bottom: 1px solid #ccc;
     position: relative;
   }
 
@@ -250,10 +267,13 @@ export default {
   }
 }
 
-.grid-time {
-  display: grid;
-  grid-template-columns: repeat(24, 140px);
-  grid-column-gap: 5px;
+.scroller-time {
+  // position:fixed;
+  top: 80px;
+  width: 100%;
+  z-index: 2;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
   scrollbar-width: none;
@@ -263,6 +283,12 @@ export default {
     display: none;
     /* Safari and Chrome */
   }
+}
+
+.grid-time {
+  display: grid;
+  grid-template-columns: repeat(24, 140px);
+  grid-column-gap: 5px;
 }
 
 .grid-date {

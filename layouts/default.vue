@@ -137,9 +137,9 @@
     </v-navigation-drawer>
 
     <!-- App Footer -->
-    <v-footer :absolute="!fixed" app>
+    <!-- <v-footer :absolute="!fixed" app>
       <span>Copyright &copy; {{ new Date().getFullYear() }} Ahmad Luthfi Masruri</span>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 
