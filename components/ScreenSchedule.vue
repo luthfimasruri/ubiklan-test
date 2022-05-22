@@ -30,7 +30,7 @@
           <v-btn v-for="date in currentDate.daysInMonth()" :key="date" :id="isToday(date) ? 'today' : ''"
             :class="{ 'ub-orange': isToday(date) }" style="align-self: center" height="55" width="55" icon>
             <div :class="isToday(date) ? 'white--text' : 'grey--text text--darken-3'">
-              <div class="body-2">{{ $dayjs().date(date).toString().substring(0, 3) }}</div>
+              <div class="body-2">{{ currentDate.date(date).toString().substring(0, 3) }}</div>
               <div class="font-weight-bold body-1" style="line-height: 1">
                 {{ date }}
               </div>
