@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div class="pa-3">
     <v-row justify="center" align="center">
       <v-col>
@@ -14,7 +14,13 @@
         <v-img src="/images/bg-pattern.svg" gradient="to bottom, rgba(255,255,255,.5), rgba(255,255,255,.5)" contain
           class="ma-6 mr-0 ma-md-12 mr-md-0 pr-6 pr-md-12 d-flex align-center" max-height="500">
           <div class="d-flex align-center justify-center flex-column">
-            <v-img class="mx-3" :max-width="$vuetify.breakpoint.smAndUp ? 200 : 150" src="/icon.png"></v-img>
+            <v-img class="mx-3" :width="$vuetify.breakpoint.smAndUp ? 220 : 170" aspect-ratio="1" src="/icon.png" eager>
+              <template #placeholder>
+                <v-row class="fill-height" align="center" justify="center">
+                  <v-progress-circular indeterminate></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
             <div class="mx-3 my-5 text-center">
               <div class="text-h3 text-sm-h2 font-weight-medium">Welcome To Ubiklan</div>
               <div class="text-h6 text-sm-h5 mt-4 font-weight-medium">

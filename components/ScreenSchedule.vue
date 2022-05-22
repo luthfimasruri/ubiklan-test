@@ -172,7 +172,7 @@ export default {
     this.dataTimeline = getTimeline(this.today);
     setInterval(() => {
       this.today = this.$dayjs();
-    }, 10 * 1000)
+    }, 5000)
   },
   methods: {
     onClickTimeline(data) {
