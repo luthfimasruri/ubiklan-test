@@ -1,13 +1,13 @@
 <template>
-  <v-menu v-model="menu" offset-y :close-on-content-click="false" max-width="290px" min-width="290px">
+  <v-menu v-model="menu" offset-y :close-on-content-click="false" max-width="300px" min-width="300px">
     <template v-slot:activator="{ on }">
-      <v-text-field :label="label" outlined v-model="localValue" hint="Format: HH:MM" class="rounded-lg mb-2">
+      <v-text-field :label="label" readonly outlined :value="localValue" v-on="on" class="rounded-lg">
         <template #append>
-          <v-icon v-on="on" class="pr-1">mdi-clock-outline</v-icon>
+          <v-sheet :color="localValue" height="30" width="30" class="color-palette mt-n1 rounded"></v-sheet>
         </template>
       </v-text-field>
     </template>
-    <v-time-picker v-model="localValue" full-width @click="menu = false"></v-time-picker>
+    <v-color-picker v-model="localValue" @click="menu = false" />
   </v-menu>
 </template>
 <script>
@@ -15,7 +15,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: '00:00',
+      default: "#ffffff",
     },
     label: {
       type: String,
@@ -33,10 +33,15 @@ export default {
         return this.value;
       },
       set(val) {
-        this.menu = false;
         this.$emit("input", val);
       },
     },
   },
 };
 </script>
+
+<style lang="scss">
+.color-palette {
+  border: 1px solid #ccc !important;
+}
+</style>

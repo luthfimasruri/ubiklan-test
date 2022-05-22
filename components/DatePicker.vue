@@ -1,7 +1,10 @@
 <template>
-  <v-menu v-model="menu" offset-y :close-on-content-click="false" max-width="290px" min-width="290px">
+  <v-menu v-model="menu" offset-y :close-on-content-click="false" nudge-bottom="-30px" max-width="290px" min-width="290px">
     <template v-slot:activator="{ on }">
-      <v-text-field :label="label" append-icon="mdi-calendar" readonly outlined :value="localValue" v-on="on" class="rounded-lg">
+      <v-text-field :label="label" outlined v-model="localValue" hint="Format: YYYY-MM-DD" class="rounded-lg mb-2">
+        <template #append>
+          <v-icon v-on="on" class="pr-1">mdi-calendar</v-icon>
+        </template>
       </v-text-field>
     </template>
     <v-date-picker v-model="localValue" @click="menu = false" no-title />

@@ -59,7 +59,7 @@
       <div class="layout-timeline">
         <div class="grid-timeline py-4 px-4 overflow-x-auto" ref="gridTimeline" v-scroll.self="onScrollTimeline">
           <v-hover v-for="(item, i) in dataTimeline" :key="i" v-slot="{ hover }" :style="getTimelineStyle(item)">
-            <v-card flat :color="item.bgColor" :elevation="hover ? 4 : 0" class="px-3 py-2 white--text rounded-lg"
+            <v-card flat :color="item.bgColor" :elevation="hover ? 4 : 0" class="px-3 py-2 rounded-lg"
               @click="onClickTimeline(item)">
               <div class="font-weight-bold">{{ item.title }}</div>
               <div>
@@ -82,10 +82,13 @@
         <v-divider></v-divider>
         <v-card-text class="pb-0 px-3 px-sm-6 pt-3 pt-sm-6">
           <v-container>
-            <v-text-field v-model="selectedDataTimeline.title" label="Title" outlined class="rounded-lg"></v-text-field>
-            <date-picker v-model="selectedDataTimeline.date" label="Date"/>
-            <time-picker v-model="selectedDataTimeline.startTime" label="Start Time"/>
-            <time-picker v-model="selectedDataTimeline.endTime" label="End Time"/>
+            <v-text-field v-model="selectedDataTimeline.title" label="Title" outlined class="rounded-lg mb-2">
+            </v-text-field>
+            <date-picker v-model="selectedDataTimeline.date" label="Date" />
+            <time-picker v-model="selectedDataTimeline.startTime" label="Start Time" />
+            <time-picker v-model="selectedDataTimeline.endTime" label="End Time" />
+            <color-picker v-model="selectedDataTimeline.bgColor" label="Background Color" />
+            <color-picker v-model="selectedDataTimeline.fgColor" label="Foreground Color" />
           </v-container>
         </v-card-text>
         <v-divider></v-divider>
@@ -103,10 +106,12 @@
 <script>
 import { getTimeline } from './dataTimeline.js';
 import DatePicker from "./DatePicker";
+import TimePicker from "./TimePicker";
+import ColorPicker from "./ColorPicker";
 
 export default {
   components: {
-    DatePicker
+    DatePicker, TimePicker, ColorPicker
   },
   data() {
     return {
@@ -223,6 +228,7 @@ export default {
         "grid-column": `${colStart}/${colEnd}`,
         "margin-left": `${marginLeft}px`,
         "margin-right": `${marginRight}px`,
+        "color": item.fgColor,
       };
     },
   },
