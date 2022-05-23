@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <v-container>
+    <div class="pa-3">
       <v-row>
         <!-- Date Controller -->
         <v-col class="d-flex align-center pa-6">
@@ -26,7 +26,7 @@
           </div>
         </v-col>
       </v-row>
-    </v-container>
+    </div>
 
     <div class="grid-layout pl-0 pl-sm-6">
       <div class="layout-corner"></div>
@@ -61,11 +61,11 @@
       <div ref="layoutTime" class="layout-time">
         <div ref="gridTime" class="grid-time px-4">
           <v-card
-            v-for="(time, i) in 24"
+            v-for="(hour, i) in hoursInDay"
             :key="i"
             flat
             class="font-weight-bold my-2"
-            :style="getTimeStyle(time)"
+            :style="getTimeStyle(hour)"
           >
             <span class="grey--text text--darken-3">{{
               $dayjs().hour(i).minute(0).format('HH:mm')
@@ -185,7 +185,12 @@ import DatePicker from './DatePicker'
 import TimePicker from './TimePicker'
 import ColorPicker from './ColorPicker'
 
-const supportsTouch =
+const MINUTES_IN_HOUR = 60
+const HOURS_IN_DAY = 24
+const GRID_TIME_COLUMN_GAP = 5
+const GRID_TIME_COLUMN_WIDTH = GRID_TIME_COLUMN_GAP + 140
+
+const SUPPORTS_TOUCH =
   'ontouchstart' in window ||
   navigator.msMaxTouchPoints > 0 ||
   navigator.maxTouchPoints > 0
@@ -219,7 +224,8 @@ export default {
       dataTimeline: [],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
-      supportsTouch: supportsTouch,
+      supportsTouch: SUPPORTS_TOUCH,
+      hoursInDay: HOURS_IN_DAY,
       dragging: false,
       dragTimeout: null,
     }
@@ -228,9 +234,9 @@ export default {
     getTimeTrackerStyle() {
       let colStart = this.today.hour() + 1
       let marginLeft = 0
-      const gridColWidth = 140 + 5
       if (this.today.minute() > 0) {
-        marginLeft = (gridColWidth / 59) * parseInt(this.today.minute())
+        marginLeft =
+          (GRID_TIME_COLUMN_WIDTH / MINUTES_IN_HOUR) * parseInt(this.today.minute())
       }
       return {
         'grid-row': `1/2`,
@@ -242,9 +248,9 @@ export default {
       let rowEnd = this.today.daysInMonth() + 1
       let colStart = this.today.hour() + 1
       let marginLeft = 0
-      const gridColWidth = 140 + 5
       if (this.today.minute() > 0) {
-        marginLeft = (gridColWidth / 59) * parseInt(this.today.minute())
+        marginLeft =
+          (GRID_TIME_COLUMN_WIDTH / MINUTES_IN_HOUR) * parseInt(this.today.minute())
       }
       return {
         'grid-row': `1/${rowEnd}`,
@@ -299,6 +305,12 @@ export default {
       this.currentDate = this.$dayjs()
       this.$nextTick(() => {
         this.$vuetify.goTo('#today', { offset: 60 })
+        // scroll to current schedule
+        const offsetHour = this.today.hour() * GRID_TIME_COLUMN_WIDTH
+        const offsetMinute =
+          (this.today.minute() * GRID_TIME_COLUMN_WIDTH) / MINUTES_IN_HOUR
+        this.$refs.gridTimeline.scrollLeft =
+          offsetHour + offsetMinute - GRID_TIME_COLUMN_WIDTH
       })
     },
     isRunning(item) {
@@ -312,10 +324,10 @@ export default {
       }
       return false
     },
-    getTimeStyle(time) {
+    getTimeStyle(hour) {
       return {
         'grid-row': `1/2`,
-        'grid-column': `${time} / ${time + 1}`,
+        'grid-column': `${hour} / ${hour + 1}`,
       }
     },
     getTimelineStyle(item) {
@@ -324,16 +336,18 @@ export default {
       let colStart = parseInt(item.startTime.substring(0, 2)) + 1
       let colEnd = parseInt(item.endTime.substring(0, 2)) + 1
 
-      const gridColWidth = 140 + 5
       let marginLeft = 0
       let marginRight = 0
       if (parseInt(item.startTime.substring(3, 5)) > 0) {
-        marginLeft = (gridColWidth / 59) * parseInt(item.startTime.substring(3, 5))
+        marginLeft =
+          (GRID_TIME_COLUMN_WIDTH / MINUTES_IN_HOUR) *
+          parseInt(item.startTime.substring(3, 5))
       }
       if (parseInt(item.endTime.substring(3, 5)) > 0) {
         colEnd += 1
         marginRight =
-          (gridColWidth / 59) * (59 - parseInt(item.endTime.substring(3, 5)))
+          (GRID_TIME_COLUMN_WIDTH / MINUTES_IN_HOUR) *
+          (MINUTES_IN_HOUR - parseInt(item.endTime.substring(3, 5)))
       }
       return {
         'grid-row': `${rowStart}/${rowEnd}`,
@@ -348,10 +362,21 @@ export default {
 </script>
 
 <style lang="scss">
+$APP_BAR_HEIGHT: 80px;
+$HOURS_IN_DAY: 24;
+$DAYS_IN_MONTH: 31;
+$GRID_TIME_COLUMN_WIDTH: 140px;
+$GRID_TIME_COLUMN_GAP: 5px;
+$GRID_TIME_ROW_HEIGHT: 40px;
+$GRID_DATE_COLUMN_WIDTH: 70px;
+$GRID_DATE_ROW_HEIGHT: 70px;
+$GRID_TIMELINE_COLUMN_WIDTH: $GRID_TIME_COLUMN_WIDTH;
+$GRID_TIMELINE_ROW_HEIGHT: $GRID_DATE_ROW_HEIGHT;
+
 .grid-layout {
   display: grid;
-  grid-template-columns: 70px minmax(0, 1fr);
-  grid-template-rows: 40px minmax(0, 1fr);
+  grid-template-columns: $GRID_DATE_COLUMN_WIDTH minmax(0, 1fr);
+  grid-template-rows: $GRID_TIME_ROW_HEIGHT minmax(0, 1fr);
 
   .layout-corner {
     grid-column: 1 / 2;
@@ -364,7 +389,7 @@ export default {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     position: sticky;
-    top: 80px;
+    top: $APP_BAR_HEIGHT;
     z-index: 2;
     border-bottom: 1px solid #ccc;
     background: white;
@@ -384,8 +409,8 @@ export default {
 
 .grid-time {
   display: grid;
-  grid-template-columns: repeat(24, 140px);
-  grid-column-gap: 5px;
+  grid-template-columns: repeat($HOURS_IN_DAY, $GRID_TIME_COLUMN_WIDTH);
+  grid-column-gap: $GRID_TIME_COLUMN_GAP;
   overflow: hidden;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
@@ -400,14 +425,14 @@ export default {
 
 .grid-date {
   display: grid;
-  grid-template-rows: repeat(30, 70px);
+  grid-template-rows: repeat($DAYS_IN_MONTH, $GRID_DATE_COLUMN_WIDTH);
   grid-row-gap: 20px;
 }
 
 .grid-timeline {
   display: grid;
-  grid-template-columns: repeat(24, 140px);
-  grid-template-rows: repeat(30, 70px);
+  grid-template-columns: repeat($HOURS_IN_DAY, $GRID_TIMELINE_COLUMN_WIDTH);
+  grid-template-rows: repeat($DAYS_IN_MONTH, $GRID_TIMELINE_ROW_HEIGHT);
   grid-row-gap: 20px;
   grid-column-gap: 5px;
   overflow-y: auto;

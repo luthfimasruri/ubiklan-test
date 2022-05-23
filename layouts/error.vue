@@ -10,7 +10,7 @@
       <inline-svg
         class="mx-3"
         :width="$vuetify.breakpoint.smAndUp ? 200 : 150"
-        height="auto"
+        height="100%"
         src="/404/robot.svg"
       >
       </inline-svg>
