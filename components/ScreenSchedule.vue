@@ -24,6 +24,7 @@
               <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
           </div>
+          <pre>{{ dragging }}</pre>
         </v-col>
       </v-row>
     </v-container>
@@ -87,9 +88,12 @@
       <div class="layout-timeline">
         <div
           ref="gridTimeline"
-          v-dragscroll.pass="{ container: 'html' }"
+          v-dragscroll.pass="{ container: 'html', active: !supportsTouch }"
           v-scroll.self="onScrollTimeline"
           class="grid-timeline py-4 px-4"
+          @dragscrollstart="onDragStart"
+          @dragscrollend="onDragEnd"
+          @click.capture="onDragClick"
         >
           <v-hover
             v-for="(item, i) in dataTimeline"
@@ -102,7 +106,7 @@
               :color="item.bgColor"
               :elevation="hover ? 4 : 0"
               class="px-3 py-2 rounded-lg d-flex justify-left"
-              @click.passive="onClickTimeline(item)"
+              @click="onClickTimeline(item)"
             >
               <div style="position: sticky; left: 0">
                 <div class="d-flex align-start">
@@ -182,6 +186,11 @@ import DatePicker from './DatePicker'
 import TimePicker from './TimePicker'
 import ColorPicker from './ColorPicker'
 
+const supportsTouch =
+  'ontouchstart' in window ||
+  navigator.msMaxTouchPoints > 0 ||
+  navigator.maxTouchPoints > 0
+
 export default {
   components: {
     DatePicker,
@@ -211,6 +220,9 @@ export default {
       dataTimeline: [],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
+      supportsTouch: supportsTouch,
+      dragging: false,
+      dragTimeout: null,
     }
   },
   computed: {
@@ -266,6 +278,17 @@ export default {
     },
     onClickPrevMonth() {
       this.currentDate = this.currentDate.month(this.currentDate.month() - 1)
+    },
+    onDragStart() {
+      this.dragTimeout = setTimeout(() => (this.dragging = true), 100) // Minimal delay to be regarded as drag instead of click
+    },
+    onDragEnd() {
+      clearTimeout(this.dragTimeout)
+      setTimeout(() => (this.dragging = false))
+    },
+    onDragClick(e) {
+      if (this.dragging) e.stopPropagation()
+      this.dragging = false
     },
     isToday(date) {
       return (
