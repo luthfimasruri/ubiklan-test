@@ -104,8 +104,19 @@
               @click="onClickTimeline(item)"
             >
               <div style="position: sticky; left: 0">
-                <div class="font-weight-bold">{{ item.title }}</div>
-                <div>{{ item.startTime }} - {{ item.endTime }}</div>
+                <div class="d-flex align-start">
+                  <v-icon
+                    v-if="isRunning(item)"
+                    :color="item.fgColor"
+                    class="mt-1 mr-2"
+                    size="22"
+                    >mdi-google-play</v-icon
+                  >
+                  <div>
+                    <div class="font-weight-bold">{{ item.title }}</div>
+                    <div>{{ item.startTime }} - {{ item.endTime }}</div>
+                  </div>
+                </div>
               </div>
             </v-card>
           </v-hover>
@@ -266,6 +277,17 @@ export default {
       this.$nextTick(() => {
         this.$vuetify.goTo('#today', { offset: 60 })
       })
+    },
+    isRunning(item) {
+      if (this.today.format('YYYY-MM-DD') == item.date) {
+        if (
+          this.today.format('HH:mm') >= item.startTime &&
+          this.today.format('HH:mm') < item.endTime
+        ) {
+          return true
+        }
+      }
+      return false
     },
     getTimeStyle(time) {
       return {
