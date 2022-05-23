@@ -24,7 +24,6 @@
               <v-icon>mdi-chevron-right</v-icon>
             </v-btn>
           </div>
-          <pre>{{ dragging }}</pre>
         </v-col>
       </v-row>
     </v-container>
