@@ -1,18 +1,24 @@
 <template>
   <v-menu
+    ref="menu"
     v-model="menu"
-    offset-y
     :close-on-content-click="false"
-    max-width="300px"
-    min-width="300px"
+    :return-value.sync="localValue"
+    transition="scale-transition"
+    offset-y
+    nudge-bottom="-30px"
+    max-width="290px"
+    min-width="auto"
   >
-    <template #activator="{ on }">
+    <template #activator="{ on, attrs }">
       <v-text-field
+        v-model="localValue"
         :label="label"
-        readonly
         outlined
-        :value="localValue"
-        class="rounded-lg"
+        readonly
+        hint="Format: YYYY-MM-DD"
+        class="rounded-lg mb-2"
+        v-bind="attrs"
         v-on="on"
       >
         <template #append>
@@ -25,7 +31,15 @@
         </template>
       </v-text-field>
     </template>
-    <v-color-picker v-model="localValue" @click="menu = false" />
+    <v-sheet>
+      <v-color-picker v-model="localValue" flat> </v-color-picker>
+      <v-divider></v-divider>
+      <div class="d-flex pa-2">
+        <v-spacer></v-spacer>
+        <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
+        <v-btn text color="primary" @click="$refs.menu.save(localValue)"> OK </v-btn>
+      </div>
+    </v-sheet>
   </v-menu>
 </template>
 
