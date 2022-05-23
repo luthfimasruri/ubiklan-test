@@ -138,8 +138,12 @@
     <!-- Dialog Form Edit Timeline -->
     <v-dialog v-model="showFormEditTimeline" max-width="600px">
       <v-card>
-        <v-card-title>
+        <v-card-title class="py-3 pr-3">
           <span class="text-h5">Edit Timeline</span>
+          <v-spacer></v-spacer>
+          <v-btn color="ub-grey" large icon @click="showFormEditTimeline = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text class="pb-0 px-3 px-sm-6 pt-3 pt-sm-6">
@@ -167,13 +171,6 @@
             />
           </v-container>
         </v-card-text>
-        <v-divider></v-divider>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary darken-1" text @click="showFormEditTimeline = false">
-            Close
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-dialog>
   </div>
