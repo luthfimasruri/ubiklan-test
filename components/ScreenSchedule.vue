@@ -1,9 +1,9 @@
 <template>
-  <div class="pt-3 pl-3">
+  <div class="">
     <v-container>
       <v-row>
         <!-- Date Controller -->
-        <v-col class="d-flex align-center">
+        <v-col class="d-flex align-center pa-6">
           <v-btn
             class="rounded-lg"
             outlined
@@ -28,10 +28,10 @@
       </v-row>
     </v-container>
 
-    <div class="grid-layout pt-3 pl-3">
+    <div class="grid-layout pl-0 pl-sm-6">
       <div class="layout-corner"></div>
       <!-- Side Date -->
-      <div class="layout-date">
+      <div class="layout-date d-flex d-sm-block justify-center">
         <div class="grid-date py-4">
           <v-btn
             v-for="date in currentDate.daysInMonth()"
@@ -320,7 +320,7 @@ export default {
     grid-row: 1 / 2;
     position: sticky;
     top: 80px;
-    z-index: 1;
+    z-index: 2;
     border-bottom: 1px solid #ccc;
     background: white;
   }
@@ -328,6 +328,7 @@ export default {
   .layout-date {
     grid-row: 2 / 3;
     grid-column: 1 / 2;
+    border-right: 1px solid #ccc;
   }
 
   .layout-timeline {
@@ -340,7 +341,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(24, 140px);
   grid-column-gap: 5px;
-  overflow-y: auto;
+  overflow: hidden;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
   scrollbar-width: none;
@@ -356,7 +357,6 @@ export default {
   display: grid;
   grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
-  border-right: 1px solid #ccc;
 }
 
 .grid-timeline {

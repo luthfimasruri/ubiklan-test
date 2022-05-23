@@ -98,7 +98,9 @@
       <v-spacer />
 
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <inline-svg width="24" height="24" src="/icons/bell-icon.svg" />
+        <v-badge color="primary" offset-x="10" offset-y="8" dot bordered>
+          <inline-svg width="24" height="24" src="/icons/bell-icon.svg" />
+        </v-badge>
       </v-btn>
 
       <!-- Menu Profile -->
