@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     "plugin:vue/recommended",
     "plugin:nuxt/recommended",
-    "@vue/prettier",
     "prettier",
   ],
   rules: {

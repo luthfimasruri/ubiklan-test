@@ -52,6 +52,7 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/dayjs',
+    '@nuxtjs/axios',
   ],
 
   // PWA module configuration: https://pwa.nuxtjs.org/setup

@@ -43,7 +43,7 @@
             <inline-svg width="24" height="24" :src="`/icons/${item.icon}`" />
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -61,8 +61,8 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn
         icon
-        @click.stop="miniVariant = !miniVariant"
         class="d-none d-sm-block"
+        @click.stop="miniVariant = !miniVariant"
       >
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
@@ -72,21 +72,21 @@
       <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
-      <div class="x-search mx-2 mx-sm-4 flex-grow-1 rounded-lg">
+      <div class="search mx-2 mx-sm-4 flex-grow-1 rounded-lg">
         <v-autocomplete
-          height="40"
-          background-color="transparent"
+          v-model="model"
+          :loading="loading"
+          :items="searchItems"
+          :search-input.sync="search"
           solo
           flat
           dense
-          v-model="select"
-          :loading="loading"
-          :items="items"
-          :search-input.sync="search"
           cache-items
-          class="pl-0 rounded-r-lg rounded-l-0"
           hide-details
+          height="40"
           append-icon=""
+          background-color="transparent"
+          class="pl-0 rounded-r-lg rounded-l-0"
           placeholder="Search screen, media, playlist or schedule"
         >
           <template #prepend>
@@ -109,13 +109,13 @@
 
       <!-- Menu Profile -->
       <v-menu offset-y z-index="999" nudge-bottom="8" rounded="lg">
-        <template v-slot:activator="{ on, attrs, value }">
+        <template #activator="{ on, attrs, value }">
           <v-hover v-slot="{ hover }">
             <button
-              v-on="on"
-              v-bind="attrs"
               class="d-flex ml-1 ml-sm-2 pa-1 text-left rounded-pill"
               :class="hover || value ? 'grey lighten-3' : ''"
+              v-bind="attrs"
+              v-on="on"
             >
               <v-avatar color="ub-orange" size="40">
                 <span class="white--text text-h6">J</span>
@@ -158,10 +158,10 @@
             <v-list-item-group color="primary">
               <v-list-item v-for="(item, i) in menuProfile" :key="i">
                 <v-list-item-icon>
-                  <v-icon v-text="item.icon"></v-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-icon>
                 <v-list-item-content>
-                  <v-list-item-title v-text="item.text"></v-list-item-title>
+                  <v-list-item-title>{{ item.text }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
@@ -175,9 +175,6 @@
           </v-card-actions>
         </v-card>
       </v-menu>
-      <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn> -->
     </v-app-bar>
 
     <!-- App Content -->
@@ -198,11 +195,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <!-- App Footer -->
-    <!-- <v-footer :absolute="!fixed" app>
-      <span>Copyright &copy; {{ new Date().getFullYear() }} Ahmad Luthfi Masruri</span>
-    </v-footer> -->
   </v-app>
 </template>
 
@@ -277,71 +269,46 @@ export default {
       ],
       // App Bar Data
       loading: false,
-      items: [],
+      model: null,
       search: null,
-      select: null,
-      states: [
-        'Alabama',
-        'Alaska',
-        'American Samoa',
-        'Arizona',
-        'Arkansas',
-        'California',
-        'Colorado',
-        'Connecticut',
-        'Delaware',
-        'District of Columbia',
-        'Federated States of Micronesia',
-        'Florida',
-        'Georgia',
-        'Guam',
-        'Hawaii',
-        'Idaho',
-        'Illinois',
-        'Indiana',
-        'Iowa',
-        'Kansas',
-        'Kentucky',
-        'Louisiana',
-        'Maine',
-        'Marshall Islands',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Carolina',
-        'North Dakota',
-        'Northern Mariana Islands',
-        'Ohio',
-        'Oklahoma',
-        'Oregon',
-        'Palau',
-        'Pennsylvania',
-        'Puerto Rico',
-        'Rhode Island',
-        'South Carolina',
-        'South Dakota',
-        'Tennessee',
-        'Texas',
-        'Utah',
-        'Vermont',
-        'Virgin Island',
-        'Virginia',
-        'Washington',
-        'West Virginia',
-        'Wisconsin',
-        'Wyoming',
-      ],
+      searchEntries: [],
+      textLimit: 70,
     }
+  },
+  computed: {
+    searchItems() {
+      return this.searchEntries.map((entry, index) => {
+        const title =
+          entry.title.length > this.textLimit
+            ? entry.title.slice(0, this.textLimit) + '...'
+            : entry.title
+        return { value: index, text: title }
+      })
+    },
+  },
+  watch: {
+    search(val) {
+      // Items have already been loaded
+      if (this.searchItems.length > 0) return
+
+      // Items have already been requested
+      if (this.loading) return
+
+      this.loading = true
+
+      // Lazily load input items
+      this.$axios
+        .get('https://gorest.co.in/public/v2/posts')
+        .then((res) => {
+          this.searchEntries = res.data || []
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
   },
   mounted() {
     this.drawer = this.$vuetify.breakpoint.lgAndUp
@@ -357,9 +324,8 @@ svg {
   fill: currentColor !important;
 }
 
-.x-search {
+.search {
   border: 1px solid rgba($color: #000000, $alpha: 0.12);
-
   .v-input__prepend-outer {
     margin: 0 !important;
     height: 40px;
