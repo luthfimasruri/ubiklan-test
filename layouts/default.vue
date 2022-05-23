@@ -123,7 +123,7 @@
               <div class="d-none d-md-flex align-center">
                 <div class="mx-2">
                   <div class="font-weight-bold">John Doe</div>
-                  <div class="body-2" style="line-height: 1">Admin</div>
+                  <div class="text-body-2" style="line-height: 1">Admin</div>
                 </div>
                 <v-icon class="mr-2">
                   mdi-{{ `chevron-${value ? 'up' : 'down'}` }}

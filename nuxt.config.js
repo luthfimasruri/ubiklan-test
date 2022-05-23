@@ -48,6 +48,10 @@ export default {
     '@nuxtjs/eslint-module',
   ],
 
+  eslint: {
+    fix: true,
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/pwa',

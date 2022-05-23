@@ -35,8 +35,8 @@
         <div class="grid-date py-4">
           <v-btn
             v-for="date in currentDate.daysInMonth()"
-            :key="date"
             :id="isToday(date) ? 'today' : ''"
+            :key="date"
             :class="{ 'ub-orange': isToday(date) }"
             style="align-self: center"
             height="55"
@@ -48,10 +48,10 @@
                 isToday(date) ? 'white--text' : 'grey--text text--darken-3'
               "
             >
-              <div class="body-2">
+              <div class="text-body-2">
                 {{ currentDate.date(date).toString().substring(0, 3) }}
               </div>
-              <div class="font-weight-bold body-1" style="line-height: 1">
+              <div class="font-weight-bold text-body-1" style="line-height: 1">
                 {{ date }}
               </div>
             </div>
@@ -60,18 +60,18 @@
       </div>
 
       <!-- Header Time -->
-      <div class="layout-time" ref="layoutTime">
+      <div ref="layoutTime" class="layout-time">
         <div
-          class="scroller-time overflow-hidden"
           ref="scrollerTime"
           v-scroll="onScrollWindow"
+          class="scroller-time overflow-hidden"
           :style="isScrollerTimeSticky ? 'position: fixed' : ''"
         >
-          <div class="grid-time px-4" ref="gridTime">
+          <div ref="gridTime" class="grid-time px-4">
             <v-card
-              flat
               v-for="(time, i) in 24"
               :key="i"
+              flat
               class="font-weight-bold my-2"
               :style="getTimeStyle(time)"
             >
@@ -84,7 +84,7 @@
               class="tracker-badge"
               :style="getTimeTrackerStyle"
             >
-              <div class="badge rounded white--text font-weight-bold body-2">
+              <div class="badge rounded white--text font-weight-bold text-body-2">
                 {{ today.format('HH:mm') }}
               </div>
             </div>
@@ -95,9 +95,9 @@
       <!-- Gantt Chart Timeline -->
       <div class="layout-timeline">
         <div
-          class="grid-timeline py-4 px-4 overflow-x-auto"
           ref="gridTimeline"
           v-scroll.self="onScrollTimeline"
+          class="grid-timeline py-4 px-4 overflow-x-auto"
         >
           <v-hover
             v-for="(item, i) in dataTimeline"
@@ -245,6 +245,11 @@ export default {
       }
     },
   },
+  watch: {
+    currentDate(val) {
+      this.dataTimeline = getTimeline(val)
+    },
+  },
   mounted() {
     this.dataTimeline = getTimeline(this.today)
     setInterval(() => {
@@ -312,11 +317,6 @@ export default {
         'margin-right': `${marginRight}px`,
         color: item.fgColor,
       }
-    },
-  },
-  watch: {
-    currentDate(val) {
-      this.dataTimeline = getTimeline(val)
     },
   },
 }

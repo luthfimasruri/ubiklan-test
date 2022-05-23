@@ -4,7 +4,7 @@
       <!-- Billboard Badge -->
       <v-col class="d-flex align-center">
         <div class="pa-1 green rounded mr-2" style="max-height: 0px"></div>
-        <span class="font-weight-bold body-2">Turned on</span>
+        <span class="font-weight-bold text-body-2">Turned on</span>
       </v-col>
     </v-row>
 
@@ -48,11 +48,11 @@
                 <v-img
                   :class="{ 'billboard-active': active }"
                   class="rounded-lg"
-                  @click="toggle"
                   :src="`/images/${item.src}`"
                   width="128"
                   :aspect-ratio="16 / 9"
                   eager
+                  @click="toggle"
                 >
                   <template #placeholder>
                     <v-row class="fill-height" align="center" justify="center">

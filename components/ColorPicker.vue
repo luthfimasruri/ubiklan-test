@@ -6,14 +6,14 @@
     max-width="300px"
     min-width="300px"
   >
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-text-field
         :label="label"
         readonly
         outlined
         :value="localValue"
-        v-on="on"
         class="rounded-lg"
+        v-on="on"
       >
         <template #append>
           <v-sheet

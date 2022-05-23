@@ -8,9 +8,11 @@ module.exports = {
   extends: [
     "plugin:vue/recommended",
     "plugin:nuxt/recommended",
+    'plugin:vuetify/base',
     "prettier",
   ],
   rules: {
+    'vue/multi-word-component-names': 'off',
   },
   globals: {
     $nuxt: true

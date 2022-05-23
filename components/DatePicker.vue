@@ -7,20 +7,20 @@
     max-width="290px"
     min-width="290px"
   >
-    <template v-slot:activator="{ on }">
+    <template #activator="{ on }">
       <v-text-field
+        v-model="localValue"
         :label="label"
         outlined
-        v-model="localValue"
         hint="Format: YYYY-MM-DD"
         class="rounded-lg mb-2"
       >
         <template #append>
-          <v-icon v-on="on" class="pr-1">mdi-calendar</v-icon>
+          <v-icon class="pr-1" v-on="on">mdi-calendar</v-icon>
         </template>
       </v-text-field>
     </template>
-    <v-date-picker v-model="localValue" @click="menu = false" no-title />
+    <v-date-picker v-model="localValue" no-title @click="menu = false" />
   </v-menu>
 </template>
 <script>
