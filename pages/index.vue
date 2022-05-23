@@ -3,7 +3,7 @@
     <v-row justify="center" align="center">
       <v-col>
         <v-breadcrumbs :items="items" class="font-weight-bold px-3 py-3">
-          <template v-slot:divider>
+          <template #divider>
             <v-icon>mdi-chevron-right</v-icon>
           </template>
         </v-breadcrumbs>

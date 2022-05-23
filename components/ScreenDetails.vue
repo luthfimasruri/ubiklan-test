@@ -39,11 +39,7 @@
             max-width="100%"
             style="overflow-x: auto"
           >
-            <v-sheet
-              v-for="(item, i) in billboardItems"
-              :key="i"
-              max-width="140"
-            >
+            <v-sheet v-for="(item, i) in billboardItems" :key="i" max-width="140">
               <v-item v-slot="{ active, toggle }" class="mr-3">
                 <v-img
                   :class="{ 'billboard-active': active }"

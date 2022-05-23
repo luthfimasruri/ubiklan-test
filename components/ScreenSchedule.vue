@@ -44,9 +44,7 @@
             icon
           >
             <div
-              :class="
-                isToday(date) ? 'white--text' : 'grey--text text--darken-3'
-              "
+              :class="isToday(date) ? 'white--text' : 'grey--text text--darken-3'"
             >
               <div class="text-body-2">
                 {{ currentDate.date(date).toString().substring(0, 3) }}
@@ -61,32 +59,25 @@
 
       <!-- Header Time -->
       <div ref="layoutTime" class="layout-time">
-        <div
-          ref="scrollerTime"
-          v-scroll="onScrollWindow"
-          class="scroller-time overflow-hidden"
-          :style="isScrollerTimeSticky ? 'position: fixed' : ''"
-        >
-          <div ref="gridTime" class="grid-time px-4">
-            <v-card
-              v-for="(time, i) in 24"
-              :key="i"
-              flat
-              class="font-weight-bold my-2"
-              :style="getTimeStyle(time)"
-            >
-              <span class="grey--text text--darken-3">{{
-                $dayjs().hour(i).minute(0).format('HH:mm')
-              }}</span>
-            </v-card>
-            <div
-              v-show="currentDate.isSame(today, 'month')"
-              class="tracker-badge"
-              :style="getTimeTrackerStyle"
-            >
-              <div class="badge rounded white--text font-weight-bold text-body-2">
-                {{ today.format('HH:mm') }}
-              </div>
+        <div ref="gridTime" class="grid-time px-4">
+          <v-card
+            v-for="(time, i) in 24"
+            :key="i"
+            flat
+            class="font-weight-bold my-2"
+            :style="getTimeStyle(time)"
+          >
+            <span class="grey--text text--darken-3">{{
+              $dayjs().hour(i).minute(0).format('HH:mm')
+            }}</span>
+          </v-card>
+          <div
+            v-show="currentDate.isSame(today, 'month')"
+            class="tracker-badge"
+            :style="getTimeTrackerStyle"
+          >
+            <div class="badge rounded white--text font-weight-bold text-body-2">
+              {{ today.format('HH:mm') }}
             </div>
           </div>
         </div>
@@ -97,7 +88,7 @@
         <div
           ref="gridTimeline"
           v-scroll.self="onScrollTimeline"
-          class="grid-timeline py-4 px-4 overflow-x-auto"
+          class="grid-timeline py-4 px-4"
         >
           <v-hover
             v-for="(item, i) in dataTimeline"
@@ -109,11 +100,13 @@
               flat
               :color="item.bgColor"
               :elevation="hover ? 4 : 0"
-              class="px-3 py-2 rounded-lg"
+              class="px-3 py-2 rounded-lg d-flex justify-left"
               @click="onClickTimeline(item)"
             >
-              <div class="font-weight-bold">{{ item.title }}</div>
-              <div>{{ item.startTime }} - {{ item.endTime }}</div>
+              <div style="position: sticky; left: 0">
+                <div class="font-weight-bold">{{ item.title }}</div>
+                <div>{{ item.startTime }} - {{ item.endTime }}</div>
+              </div>
             </v-card>
           </v-hover>
           <div
@@ -148,10 +141,7 @@
               v-model="selectedDataTimeline.startTime"
               label="Start Time"
             />
-            <time-picker
-              v-model="selectedDataTimeline.endTime"
-              label="End Time"
-            />
+            <time-picker v-model="selectedDataTimeline.endTime" label="End Time" />
             <color-picker
               v-model="selectedDataTimeline.bgColor"
               label="Background Color"
@@ -165,11 +155,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="primary darken-1"
-            text
-            @click="showFormEditTimeline = false"
-          >
+          <v-btn color="primary darken-1" text @click="showFormEditTimeline = false">
             Close
           </v-btn>
         </v-card-actions>
@@ -213,7 +199,6 @@ export default {
       dataTimeline: [],
       selectedDataTimeline: {},
       showFormEditTimeline: false,
-      isScrollerTimeSticky: false,
     }
   },
   computed: {
@@ -262,11 +247,7 @@ export default {
       this.showFormEditTimeline = true
     },
     onScrollTimeline(e) {
-      this.$refs.scrollerTime.scrollLeft = e.target.scrollLeft
-    },
-    onScrollWindow(e) {
-      let top = this.$refs.layoutTime.getBoundingClientRect().top
-      this.isScrollerTimeSticky = top <= 80
+      this.$refs.gridTime.scrollLeft = e.target.scrollLeft
     },
     onClickNextMonth() {
       this.currentDate = this.currentDate.month(this.currentDate.month() + 1)
@@ -302,8 +283,7 @@ export default {
       let marginLeft = 0
       let marginRight = 0
       if (parseInt(item.startTime.substring(3, 5)) > 0) {
-        marginLeft =
-          (gridColWidth / 59) * parseInt(item.startTime.substring(3, 5))
+        marginLeft = (gridColWidth / 59) * parseInt(item.startTime.substring(3, 5))
       }
       if (parseInt(item.endTime.substring(3, 5)) > 0) {
         colEnd += 1
@@ -331,23 +311,18 @@ export default {
   .layout-corner {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    position: relative;
-
-    &:after {
-      position: absolute;
-      content: '';
-      width: 100%;
-      height: 100%;
-      bottom: -1px;
-      border-right: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-    }
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
   }
 
   .layout-time {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    position: relative;
+    position: sticky;
+    top: 80px;
+    z-index: 1;
+    border-bottom: 1px solid #ccc;
+    background: white;
   }
 
   .layout-date {
@@ -361,13 +336,11 @@ export default {
   }
 }
 
-.scroller-time {
-  // position:fixed;
-  top: 80px;
-  width: 100%;
-  z-index: 2;
-  background-color: white;
-  border-bottom: 1px solid #ccc;
+.grid-time {
+  display: grid;
+  grid-template-columns: repeat(24, 140px);
+  grid-column-gap: 5px;
+  overflow-y: auto;
   -ms-overflow-style: none;
   /* Internet Explorer 10+ */
   scrollbar-width: none;
@@ -377,12 +350,6 @@ export default {
     display: none;
     /* Safari and Chrome */
   }
-}
-
-.grid-time {
-  display: grid;
-  grid-template-columns: repeat(24, 140px);
-  grid-column-gap: 5px;
 }
 
 .grid-date {
@@ -398,6 +365,7 @@ export default {
   grid-template-rows: repeat(30, 70px);
   grid-row-gap: 20px;
   grid-column-gap: 5px;
+  overflow-y: auto;
   height: 100%;
 }
 

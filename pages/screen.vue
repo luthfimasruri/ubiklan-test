@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-breadcrumbs :items="breadcrumbItems" class="font-weight-bold">
-      <template v-slot:divider>
+      <template #divider>
         <v-icon>mdi-chevron-right</v-icon>
       </template>
     </v-breadcrumbs>
@@ -11,7 +11,7 @@
       }}</v-tab>
     </v-tabs>
     <v-divider></v-divider>
-    <v-tabs-items v-model="tab" :touchless="true">
+    <v-tabs-items v-model="tab" :touchless="true" style="overflow: initial">
       <!-- Detail Tab Item -->
       <v-tab-item :key="0">
         <ScreenDetails />
