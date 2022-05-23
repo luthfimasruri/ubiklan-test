@@ -88,6 +88,11 @@
           background-color="transparent"
           class="pl-0 rounded-r-lg rounded-l-0"
           placeholder="Search screen, media, playlist or schedule"
+          :no-data-text="
+            searchEntries.length
+              ? 'No results found'
+              : 'Search for screen, media, playlist or schedule'
+          "
         >
           <template #prepend>
             <div class="ub-grey lighten-4 px-2 ub-grey--text rounded-l-lg">
