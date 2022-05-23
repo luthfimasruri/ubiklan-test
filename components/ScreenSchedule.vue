@@ -87,6 +87,7 @@
       <div class="layout-timeline">
         <div
           ref="gridTimeline"
+          v-dragscroll.pass="{ container: 'html' }"
           v-scroll.self="onScrollTimeline"
           class="grid-timeline py-4 px-4"
         >
@@ -101,7 +102,7 @@
               :color="item.bgColor"
               :elevation="hover ? 4 : 0"
               class="px-3 py-2 rounded-lg d-flex justify-left"
-              @click="onClickTimeline(item)"
+              @click.passive="onClickTimeline(item)"
             >
               <div style="position: sticky; left: 0">
                 <div class="d-flex align-start">
