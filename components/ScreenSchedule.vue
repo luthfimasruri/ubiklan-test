@@ -136,8 +136,8 @@
     </div>
 
     <!-- Dialog Form Edit Timeline -->
-    <v-dialog v-model="showFormEditTimeline" max-width="600px">
-      <v-card>
+    <v-dialog v-model="showFormEditTimeline" max-width="600px" scrollable>
+      <v-card rounded="lg">
         <v-card-title class="py-3 pr-3">
           <span class="text-h5">Edit Timeline</span>
           <v-spacer></v-spacer>

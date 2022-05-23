@@ -158,6 +158,13 @@ let data = [
   { date: "2022-05-23", startTime: "11:00", endTime: "15:28", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "#ffffff" },
   { date: "2022-05-23", startTime: "15:28", endTime: "17:00", title: "Schedule #003", type: "meeting", bgColor: "#6abff5", fgColor: "#ffffff" },
   { date: "2022-05-23", startTime: "17:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
+  // Row 24
+  { date: "2022-05-24", startTime: "00:00", endTime: "03:20", title: "Schedule #001", type: "default", bgColor: "#00cec9", fgColor: "#ffffff" },
+  { date: "2022-05-24", startTime: "03:20", endTime: "06:30", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
+  { date: "2022-05-24", startTime: "06:30", endTime: "10:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "#ffffff" },
+  { date: "2022-05-24", startTime: "10:00", endTime: "15:00", title: "Schedule #002", type: "default", bgColor: "#60dd91", fgColor: "#ffffff" },
+  { date: "2022-05-24", startTime: "15:00", endTime: "17:00", title: "Schedule #003", type: "meeting", bgColor: "#6abff5", fgColor: "#ffffff" },
+  { date: "2022-05-24", startTime: "17:00", endTime: "23:00", title: "Schedule #004", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
   // Row 25
   { date: "2022-05-25", startTime: "00:00", endTime: "04:00", title: "Schedule #001", type: "personal", bgColor: "#00cec9", fgColor: "#ffffff" },
   { date: "2022-05-25", startTime: "04:00", endTime: "06:00", title: "Schedule #002", type: "default", bgColor: "#bd78ef", fgColor: "#ffffff" },
