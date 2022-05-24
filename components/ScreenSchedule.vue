@@ -439,6 +439,7 @@ $GRID_TIMELINE_ROW_HEIGHT: $GRID_DATE_ROW_HEIGHT;
 .tracker-timeline {
   position: relative;
   z-index: 1;
+  width: 1px;
 
   .line {
     position: absolute;
